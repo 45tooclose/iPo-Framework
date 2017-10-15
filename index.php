@@ -1,7 +1,5 @@
 <?php
-
-print_r($_GET);
 include("./core/autoloader.inc.php");
-$core = new Core();
-
+Core::Dbg("Init soft",print_var_name($true));
+Core::Init();
 ?>
