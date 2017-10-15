@@ -35,7 +35,14 @@ function r(){
   if(!$capture && ($format === 'html') && !headers_sent() && (!ob_get_level() || ini_get('output_buffering')))
     print '<!DOCTYPE HTML><html><head><title>REF</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /></head><body>';
 
-  $ref = new ref($format);
+  $warnstate = "success";
+  if((in_array('+', $options, true))){
+    $warnstate = "alert";
+  }
+  if((in_array('!', $options, true))){
+    $warnstate = "error";
+  }
+  $ref = new ref($format, $warnstate);
 
   if($capture)
     ob_start();
@@ -217,17 +224,23 @@ class ref{
      *
      * @var  SplObjectStorage
      */ 
-    $intObjects = null;
+    $intObjects = null,
 
-
+    /**
+     * Waring state level
+     *
+     * @var  SplObjectStorage
+     */ 
+    $warnState = null;
 
   /**
    * Constructor
    *
    * @param   string|RFormatter $format      Output format ID, or formatter instance defaults to 'html'
    */
-  public function __construct($format = 'html'){
+  public function __construct($format = 'html',$warstate = "success"){
 
+    $GLOBALS['warstate'] = $warstate;
     static $didIni = false;
 
     if(!$didIni){
@@ -2520,9 +2533,9 @@ class RHtmlFormatter extends RFormatter{
       $text = '<a href="' . $uri . '" target="_blank">' . $text . '</a>';
 
     $typeStr = '';
-    foreach($type as $part)
-      $typeStr .= " data-{$part}";
-
+    foreach($type as $part):
+        $typeStr .= " data-{$part}";        
+    endforeach;
     $this->out .= "<{$this->def['base']}{$typeStr}{$tip}>{$text}</{$this->def['base']}>";    
     //$this->out .= sprintf('<%1$s%2$s %3$s>%4$s</%1$s>', $this->def['base'], $typeStr, $tip, $text);
   }
@@ -2579,7 +2592,6 @@ class RHtmlFormatter extends RFormatter{
 
     return true;
   }
-
   public function endGroup(){
     $this->out .= "</{$this->def['base']}></{$this->def['base']}><i>)</i>";
     $this->level--;
@@ -2625,7 +2637,8 @@ class RHtmlFormatter extends RFormatter{
       $this->out .= "<{$this->def['base']} data-backtrace>{$path}:{$trace['line']}</{$this->def['base']}>";
     }
 
-    $this->out .= "</{$this->def['base']}><{$this->def['base']} data-output>";
+    $this->out .= "</{$this->def['base']}><{$this->def['base']} data-output class=\"{$GLOBALS['warstate']}-ref-msg\">{$GLOBALS['warstate']} :";;
+    
   } 
 
   public function startRoot(){

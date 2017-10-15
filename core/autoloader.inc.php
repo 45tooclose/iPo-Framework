@@ -22,10 +22,20 @@ spl_autoload_register(
                 $path = './core/classes/' . $class . '.class.php';
                 break;
         }
-        if(include($path)){
-            r("Success fully loaded : ".$class);
-        }else{
-            r("Error while loading : ".$class);                        
+        try{
+            if (!class_exists($class)) {
+                 include($path);
+                 r("Success fully loaded : ".$class);
+                 
+            }else{
+                +r("Class :".$class." already exists!");
+            }
+        }
+        catch(Exception $ex)
+        {
+            r("Error while loading : ".$class." Error :".$ex);                                    
+        }
+        finally{            
         }
         
     });
