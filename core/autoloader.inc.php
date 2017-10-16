@@ -22,10 +22,18 @@ spl_autoload_register(
                 $path = './core/classes/' . $class . '.class.php';
                 break;
         }
+        if($class == "Model"){
+            $path = './core/classes/' . $class . '.class.php';            
+        }
         try{
             if (!class_exists($class)) {
                  include($path);
-                 r("Success fully loaded : ".$class);
+                 if (class_exists($class)):
+                    r("Success fully loaded : ".$class);
+                 else:
+
+                    !r("Error while loading : ".$class." in : ".$path);
+                 endif;
                  
             }else{
                 +r("Class :".$class." already exists!");

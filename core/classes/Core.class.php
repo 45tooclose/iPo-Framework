@@ -30,12 +30,17 @@ class Core {
 
         $DataBase = new Database($this->config,"PS_UserData");
         r($DataBase
-            ->get("Users_Master")
+            ->get(["Users_Master"])
             ->cols(["UserUID","UserID"])
           //  ->join();
-            ->where(["PK","=","1"])
+          //  ->where(["PK","=","1"])
             ->run);
 
+        $Model = new Model();
+        $Model->test = "test";
+        $Model->save();
+
+        r($Model);
 
         /*
 

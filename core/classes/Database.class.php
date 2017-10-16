@@ -66,8 +66,8 @@ class Database {
             $this->Table = $Table;
         }
 
-        if(gettype($this->Table) != "string"){
-            !r("You must provide Table argumentin constructor or in get");
+        if(gettype($this->Table) != "array"){
+            !r("You must provide Table argument in constructor or in get");
         }else{
 
             $paternWhere = ($this->PaternModel)."Where"    ;
