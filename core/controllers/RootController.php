@@ -2,6 +2,8 @@
 class RootController extends Controller {
 
     public function __construct($Core,$args){
+        $this->Core = $Core;
+
         r("Starting RootController with:");
         r($args);
 
@@ -19,14 +21,11 @@ class RootController extends Controller {
     }
 
     public function actionIndex(){
-        $this->Render("main","index");
+        $this->Render("index");
     }
 
     public function actionTest(){
         r("Action test!!");
     }
 
-
-}
-
-?>
+}?>

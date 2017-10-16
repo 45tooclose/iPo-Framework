@@ -32,7 +32,7 @@ class Core {
         $ChoosedController = null;      
         $Slug = explode('/',$_GET["path"]);
 
-        $ControllerArgs = array();
+        $ControllerArgs = array();    
         foreach($Slug as $key => $val){
             $tmp_controller = $val."Controller";
             preg_match_all('/^[A-Za-z]{1,}$/i',$val,$matches);

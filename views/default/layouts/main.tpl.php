@@ -7,3 +7,13 @@
     //include footer
 
 ?>
+<html>
+    <head>
+    </head>
+    <body>  
+        <h1>HELLO</h1>
+        <?php 
+               r($this->Core);
+        ?>
+    </body>
+</html>
