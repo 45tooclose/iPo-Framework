@@ -1,11 +1,16 @@
 <?php
-
+/*
+*   Class Core
+*
+*/
 class Core {
 
     public $config = array();
 
     public function __construct(){
         $this->CnfLoad();    
+        $this->CnfLoad("DbPatterns");
+        
         r($this->config);
         $this->UrlToController();   
     }
@@ -23,8 +28,8 @@ class Core {
     */
     public function UrlToController(){
 
-        $DataBase = new Database($this->config,"PS_UserData", "Users_Master");
-        $DataBase->get()->get();
+        $DataBase = new Database($this->config,"PS_UserData");
+        r($DataBase->get("Users_Master")->cols()->run);
 
         $Slug = explode('/',$_GET["path"]);
         if(strlen(trim($Slug[0])) == 0){
