@@ -23,12 +23,8 @@ class Core {
     */
     public function UrlToController(){
 
-        if(class_exists("Medoo")){
-            r("Class Medoo : ".class_exists("Medoo"));
-        }else{
-            !r("Class Medoo : ".class_exists("Medoo"));            
-        }
-
+        $DataBase = new Database($this->config,"PS_UserData", "Users_Master");
+        $DataBase->get()->get();
 
         $Slug = explode('/',$_GET["path"]);
         if(strlen(trim($Slug[0])) == 0){
