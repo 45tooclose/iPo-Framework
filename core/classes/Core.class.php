@@ -28,38 +28,25 @@ class Core {
     */
     public function UrlToController(){
 
-        $DataBase = new Database($this->config,"PS_UserData");
-        r($DataBase
-            ->get(["Users_Master"])
-            ->cols(["UserUID","UserID"])
-          //  ->join();
-          //  ->where(["PK","=","1"])
-            ->run);
-
-        $Model = new Model();
-        $Model->test = "test";
-        $Model->save();
-
-        r($Model);
-
-        /*
-
-        $DataBase
-            ->set()->cols()->vals()->run; 
-            //WIll use [PK] in(return ID by bellow)
-
-
-
-        */
-
+        $DefaultController = "RootController";  
+        $ChoosedController = null;      
         $Slug = explode('/',$_GET["path"]);
-        if(strlen(trim($Slug[0])) == 0){
-            r("Index!");
-        }elseif(strlen(trim($Slug[1])) == 0){ 
-            +r("Page?");
-        }else{
 
+        $ControllerArgs = array();
+        foreach($Slug as $key => $val){
+            $tmp_controller = $val."Controller";
+            preg_match_all('/^[A-Za-z]{1,}$/i',$val,$matches);
+            if($tmp_controller != "Controller" && count($matches[0]) > 0 && is_alpa  && class_exists($tmp_controller)){
+                r("FOUNDED ".$tmp_controller);
+                $ChoosedController = $tmp_controller;
+                $ControllerArgs = array();                
+            }
+            array_push($ControllerArgs,$val);
         }
+        if($ChoosedController == null){
+            $ChoosedController = $DefaultController;
+        }
+        $Controller = new $ChoosedController($this,$ControllerArgs);
     }
 
     static public function Init(){

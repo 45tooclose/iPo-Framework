@@ -35,6 +35,12 @@ include("./core/autoloader.inc.php");
 /*
 *   ShCMS Entry Point
 */
+try {
 Core::Init();
+}
+catch(Exception $ex){
+    !r("ShCMS internal error: ");
+    !r($ex);
+}
 ~r('[CORE] ShCMS End'.TimeE());
 ?>

@@ -1,4 +1,8 @@
 <?php
+/*
+*   PDO Wrapper providing cross-database egnines compatibilites
+*   And serialisation support
+*/
 
 class Database {
 
@@ -8,6 +12,7 @@ class Database {
     public $PDO;
     public $PaternModel;
     public $GENERATED_SQL;
+    public $dsn;
 
     public function __construct($Conf,$DatabaseName, $Table = null){
         $this->Conf = $Conf;
@@ -32,6 +37,7 @@ class Database {
         $pdo_error = "";
         try {
         $this->PDO = new PDO($dsn,$this->Conf->ShCMS->DbUser,$this->Conf->ShCMS->DbPass);
+        $this->dsn = $dsn;
         }
         catch(Exception $ex){
             $pdo_error = $ex;
@@ -48,6 +54,10 @@ class Database {
         $this->PDO = null;
     }
 
+    public function __wakeup(){
+        $this->PDO = new PDO($this->dsn,$this->Conf->ShCMS->DbUser,$this->Conf->ShCMS->DbPass);        
+    }
+
     public function __get($key){
         if($key == "run"){
             $this->GENERATED_SQL = str_replace('[LIMIT]','', $this->GENERATED_SQL);    
@@ -57,7 +67,13 @@ class Database {
             
             $pdo = $this->PDO->prepare($this->GENERATED_SQL);
             $pdo->execute();
-            return $pdo->fetch(PDO::FETCH_BOTH);
+            r(debug_backtrace()[0]);
+            $output = array();
+            $cnt = 0;
+            while($res = $pdo->fetch(PDO::FETCH_BOTH)){
+                $output[$cnt++] = $res;
+            }
+            return $output;
         }
     }
 
@@ -66,8 +82,8 @@ class Database {
             $this->Table = $Table;
         }
 
-        if(gettype($this->Table) != "array"){
-            !r("You must provide Table argument in constructor or in get");
+        if(gettype($this->Table) != "string"){
+            !r("You must provide Table argumentin constructor or in get");
         }else{
 
             $paternWhere = ($this->PaternModel)."Where"    ;
@@ -113,7 +129,7 @@ class Database {
         return $this;   
     }
 
-    public function where($string){
+    public function where($conditions){
         
     }
     /*

@@ -22,7 +22,7 @@ spl_autoload_register(
                 $path = './core/classes/' . $class . '.class.php';
                 break;
         }
-        if($class == "Model"){
+        if($class == "Model" || $class == "Controller"){
             $path = './core/classes/' . $class . '.class.php';            
         }
         try{
@@ -32,7 +32,7 @@ spl_autoload_register(
                     r("Success fully loaded : ".$class);
                  else:
 
-                    !r("Error while loading : ".$class." in : ".$path);
+                    +r("Error while loading : ".$class." in : ".$path);
                  endif;
                  
             }else{
