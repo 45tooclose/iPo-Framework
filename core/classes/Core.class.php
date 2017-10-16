@@ -29,7 +29,23 @@ class Core {
     public function UrlToController(){
 
         $DataBase = new Database($this->config,"PS_UserData");
-        r($DataBase->get("Users_Master")->cols()->run);
+        r($DataBase
+            ->get("Users_Master")
+            ->cols(["UserUID","UserID"])
+          //  ->join();
+            ->where(["PK","=","1"])
+            ->run);
+
+
+        /*
+
+        $DataBase
+            ->set()->cols()->vals()->run; 
+            //WIll use [PK] in(return ID by bellow)
+
+
+
+        */
 
         $Slug = explode('/',$_GET["path"]);
         if(strlen(trim($Slug[0])) == 0){

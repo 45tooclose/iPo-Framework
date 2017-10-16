@@ -56,7 +56,6 @@ class Database {
             $this->GENERATED_SQL = str_replace('[ORDER]','', $this->GENERATED_SQL);    
             
             $pdo = $this->PDO->prepare($this->GENERATED_SQL);
-            $pdo;
             $pdo->execute();
             return $pdo->fetch(PDO::FETCH_BOTH);
         }
