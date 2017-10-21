@@ -1,4 +1,7 @@
 <?php
+
+use  core\libs\Plates;
+
 class RootController extends Controller {
 
     public function __construct($Core,$args){
@@ -22,6 +25,8 @@ class RootController extends Controller {
 
     public function actionIndex(){
         $this->Render("index");
+          // instantiate the loader
+     
     }
 
     public function actionTest(){

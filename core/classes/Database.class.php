@@ -129,6 +129,19 @@ class Database {
         return $this;   
     }
 
+    public function delete(){
+
+    }
+    /*
+    *
+    *
+    */
+    public function set($values_array){
+        foreach($values_array as $key=>$val){
+
+        }
+
+    }
     public function where($conditions){
         
     }

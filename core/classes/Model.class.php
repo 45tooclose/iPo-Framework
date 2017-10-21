@@ -6,6 +6,7 @@ class Model {
     public $joints;
     public $conf;
     public $table;
+    public $data_rows;
 
     public function construct(){
         

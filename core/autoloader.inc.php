@@ -1,6 +1,6 @@
 <?php
 /*
-* Autoloader
+* Autoloader for Classes / Models / Controllers
 *
 */
 spl_autoload_register(
