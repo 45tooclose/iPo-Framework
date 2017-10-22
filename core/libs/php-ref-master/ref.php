@@ -28,7 +28,15 @@ if ($handle) {
     $cnt = 0;
     while (($buffer = fgets($handle, 4096)) !== false) {
         if( ++$cnt == $line){
-          echo($buffer);
+          $arr = explode("r(", $buffer);
+          $first = $arr[0];
+          if(empty(trim($first))){
+            $warnstate = 'success';
+          }elseif(trim($first) == "+"){
+            $warnstate = 'alert';
+          }elseif(trim($first) == '!'){
+            $warnstate = 'error';
+          }
         }
     }
     if (!feof($handle)) {
@@ -37,7 +45,6 @@ if ($handle) {
     fclose($handle);
 }
 
-print "This function was called from line $line of $file<br />";
 
 
   // names of the arguments that were passed to this function
@@ -56,7 +63,6 @@ print "This function was called from line $line of $file<br />";
   if(!$capture && ($format === 'html') && !headers_sent() && (!ob_get_level() || ini_get('output_buffering')))
     print '<!DOCTYPE HTML><html><head><title>REF</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /></head><body>';
 
-  $warnstate = "success";
   if((in_array('+', $options, true))){
     $warnstate = "alert";
   }

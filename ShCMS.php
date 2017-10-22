@@ -31,18 +31,7 @@ include("./core/libs/composer-file-loader-master/PackageLoader.php");
 
 // You load your packages
 $loader = new PackageLoader\PackageLoader();
-$loader->load(__DIR__."/core/vendor/project");
-// You call the package classes
-new CompanyName\PackageName\Machin();
-new CompanyName\PackageName\Bidule();
-new RoutePlanner\Truc();
-new TestNoNamespace();
-// Create new Plates instance
-
-
 $loader->load(__DIR__."/core/vendor/plates");
-$templates = new League\Plates\Engine();
-
 
 
 

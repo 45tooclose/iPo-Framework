@@ -29,19 +29,19 @@ spl_autoload_register(
             if (!class_exists($class)) {
                  include($path);
                  if (class_exists($class)):
-                    r("Success fully loaded : ".$class);
+                    r("[Core Loader] Success fully loaded : ".$class);
                  else:
 
-                    +r("Error while loading : ".$class." in : ".$path);
+                    +r("[Core Loader] Error while loading : ".$class." in : ".$path);
                  endif;
                  
             }else{
-                +r("Class :".$class." already exists!");
+                +r("[Core Loader] Class :".$class." already exists!");
             }
         }
         catch(Exception $ex)
         {
-            r("Error while loading : ".$class." Error :".$ex);                                    
+            +r("[Core Loader] Error while loading : ".$class." Error :".$ex);                                    
         }
         finally{            
         }

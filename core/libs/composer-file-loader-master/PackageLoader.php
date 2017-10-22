@@ -4,6 +4,7 @@ namespace PackageLoader;
 
 class PackageLoader
 {
+    public $path;
     public $dir;
 
     public function getComposerFile()
@@ -38,6 +39,7 @@ class PackageLoader
                 $classpaths = array($classpaths);
             }
             spl_autoload_register(function ($classname) use ($namespace, $classpaths, $dir, $psr4) {
+                $success = false;
                 // Check if the namespace matches the class we are looking for
                 if (preg_match("#^".preg_quote($namespace)."#", $classname)) {
                     // Remove the namespace from the file path since it's psr4
@@ -45,22 +47,24 @@ class PackageLoader
                         $classname = str_replace($namespace, "", $classname);
                     }
                     $filename = preg_replace("#\\\\#", "/", $classname).".php";
+                    //$this->path = "unkow";
                     foreach ($classpaths as $classpath) {
                         $fullpath = $this->dir."/".$classpath."/$filename";
+                        $this->path = $fullpath;
                         if (file_exists($fullpath)) {
 
                             
-                            +r("[PSR Loader] Loading  -> " . $fullpath."");                            
                             if(include_once $fullpath){
-                                r("Success");
+                                $success = true;
                             }
-                        }else{
-
-
-                            !r("[PSR Loader] " . $fullpath."  Not found, unable to load it!");  
-
                         }
                     }
+                }
+
+                if($success = true){
+                    r("[PSR Loader] Successfully loaded  -> " . $this->path."");                    
+                }else{
+                    +r("[PSR Loader] " . $this->path."  Not found, unable to load it!");                      
                 }
             });
         }

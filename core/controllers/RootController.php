@@ -1,6 +1,6 @@
 <?php
 
-use  core\libs\Plates;
+use League\Plates;
 
 class RootController extends Controller {
 
@@ -24,6 +24,13 @@ class RootController extends Controller {
     }
 
     public function actionIndex(){
+
+        // Create new Plates instance
+        $templates = new League\Plates\Engine('./views');
+
+        // Render a template
+        echo $templates->render('profile', ['name' => 'Jonathan']);
+
         $this->Render("index");
           // instantiate the loader
      
