@@ -1,7 +1,12 @@
 <?php
 /*
-*   Core Option
+*   Core Options
 */
+
+//Errors reporting
+//error_reporting(E_ALL);
+//ini_set("display_errors", 1);
+
 //StartTime for page loading mesures
 define('StartTime',     microtime(true));
 
@@ -14,7 +19,7 @@ define('IsDBG',         true);  //Will display the entire debuging outputs
 #define('DisplayAll',    false);     //Will not render the page, it will dump all the variables before exit
 define('DisplayAll',    true);       //Will render the page
 
-//Define environement mode : dev, prepod or prod
+//Define environement mode : dev, prepod or prod (you can create custom environement by changing ENV in core/config/conf.env.ini filenames)
 define('Env',           'dev');
 
 function TimeE(){
@@ -35,7 +40,7 @@ $loader->load(__DIR__."/core/vendor/plates");
 
 
 
-r("[CORE] ShCMS Start".TimeE());
+r("[CORE] ShCMS Start - ENV MODE : ".Env ." ".TimeE());
 
 /*
 *  Registering Autoloader
@@ -46,6 +51,8 @@ include("./core/autoloader.inc.php");
 *   ShCMS Entry Point
 */
 try {
+$test = 0 / 1;
+r($test);
 Core::Init();
 }
 catch(Exception $ex){

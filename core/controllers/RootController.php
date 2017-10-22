@@ -31,7 +31,7 @@ class RootController extends Controller {
         // Render a template
         echo $templates->render('profile', ['name' => 'Jonathan']);
 
-        $this->Render("index");
+        //$this->Render("index");
           // instantiate the loader
      
     }
