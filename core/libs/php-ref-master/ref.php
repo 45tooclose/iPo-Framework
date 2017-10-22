@@ -19,6 +19,27 @@ function r(){
   // this variable gets passed as reference to getInputExpressions(), which will store the operators in it
   $options = array();
 
+
+$line=debug_backtrace()[0]['line'];
+$file=debug_backtrace()[0]['file'];
+
+$handle = @fopen($file, "r");
+if ($handle) {
+    $cnt = 0;
+    while (($buffer = fgets($handle, 4096)) !== false) {
+        if( ++$cnt == $line){
+          echo($buffer);
+        }
+    }
+    if (!feof($handle)) {
+        echo "Erreur: fgets() a échoué\n";
+    }
+    fclose($handle);
+}
+
+print "This function was called from line $line of $file<br />";
+
+
   // names of the arguments that were passed to this function
   $expressions = ref::getInputExpressions($options);
   $capture = in_array('@', $options, true);

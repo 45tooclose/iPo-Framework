@@ -27,19 +27,24 @@ function TimeE(){
 include("./core/libs/php-ref-master/ref.php");
 //include("./core/libs/Medoo-master/src/Medoo.php");
 include("./core/libs/plates-master/src/Engine.php");
-
-// You load the PackageLoader
 include("./core/libs/composer-file-loader-master/PackageLoader.php");
 
 // You load your packages
 $loader = new PackageLoader\PackageLoader();
 $loader->load(__DIR__."/core/vendor/project");
-
 // You call the package classes
 new CompanyName\PackageName\Machin();
 new CompanyName\PackageName\Bidule();
 new RoutePlanner\Truc();
 new TestNoNamespace();
+// Create new Plates instance
+
+
+$loader->load(__DIR__."/core/vendor/plates");
+$templates = new League\Plates\Engine();
+
+
+
 
 r("[CORE] ShCMS Start".TimeE());
 

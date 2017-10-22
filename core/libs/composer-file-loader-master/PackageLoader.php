@@ -48,7 +48,17 @@ class PackageLoader
                     foreach ($classpaths as $classpath) {
                         $fullpath = $this->dir."/".$classpath."/$filename";
                         if (file_exists($fullpath)) {
-                            include_once $fullpath;
+
+                            
+                            +r("[PSR Loader] Loading  -> " . $fullpath."");                            
+                            if(include_once $fullpath){
+                                r("Success");
+                            }
+                        }else{
+
+
+                            !r("[PSR Loader] " . $fullpath."  Not found, unable to load it!");  
+
                         }
                     }
                 }
