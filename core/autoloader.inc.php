@@ -5,6 +5,10 @@
 */
 spl_autoload_register(
         function ($class) {
+            if(count(explode(trim('\ '),$class)) > 1){
+                return;
+            }
+
         $pieces = preg_split('/(?=[A-Z])/',$class);
         switch($pieces[count($pieces) - 1]){
             //If classename like UsersMasterModel
@@ -45,5 +49,4 @@ spl_autoload_register(
         }
         finally{            
         }
-        
     });

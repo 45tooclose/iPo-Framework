@@ -4,7 +4,7 @@
 *   And few of hisq specific features such as SELECT TOP X * ... 
 *   Instead of MySQL SELECT * .... LIMIT X
 */
-class mssqlDatabase extends Database {
+class mssqlDatabase extends oDatabase {
 
     static public function Get($key) {
         $ret = null;

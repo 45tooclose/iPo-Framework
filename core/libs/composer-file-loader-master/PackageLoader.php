@@ -39,6 +39,7 @@ class PackageLoader
                 $classpaths = array($classpaths);
             }
             spl_autoload_register(function ($classname) use ($namespace, $classpaths, $dir, $psr4) {
+               $bclassname = $classname;
                 $success = false;
                 // Check if the namespace matches the class we are looking for
                 if (preg_match("#^".preg_quote($namespace)."#", $classname)) {
@@ -48,12 +49,11 @@ class PackageLoader
                     }
                     $filename = preg_replace("#\\\\#", "/", $classname).".php";
                     //$this->path = "unkow";
+                    $this->path = $classname;
                     foreach ($classpaths as $classpath) {
                         $fullpath = $this->dir."/".$classpath."/$filename";
                         $this->path = $fullpath;
                         if (file_exists($fullpath)) {
-
-                            
                             if(include_once $fullpath){
                                 $success = true;
                             }
@@ -61,10 +61,10 @@ class PackageLoader
                     }
                 }
 
-                if($success = true){
+                if($success == true){
                     r("[PSR Loader] Successfully loaded  -> " . $this->path."");                    
                 }else{
-                    +r("[PSR Loader] " . $this->path."  Not found, unable to load it!");                      
+                    +r("[PSR Loader] " . $bclassname."  Not found, unable to load it!");                      
                 }
             });
         }

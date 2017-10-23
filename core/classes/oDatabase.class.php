@@ -3,8 +3,7 @@
 *   PDO Wrapper providing cross-database egnines compatibilites
 *   And serialisation support
 */
-
-class Database {
+class oDatabase {
     public $AllowedMethods = ["update","select","delete","insert"];
 
     public $Conf;

@@ -37,6 +37,7 @@ include("./core/libs/composer-file-loader-master/PackageLoader.php");
 // You load your packages
 $loader = new PackageLoader\PackageLoader();
 $loader->load(__DIR__."/core/vendor/plates");
+$loader->load(__DIR__."/core/vendor/picodb");
 
 
 

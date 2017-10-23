@@ -1,4 +1,5 @@
 <?php
+        use fguillot\picodb;
 
 class RootController extends Controller {
 
@@ -27,16 +28,28 @@ class RootController extends Controller {
         
        /* if($this->templates == null){
             $this->templates = new League\Plates\Engine('./views'); }*/
+      +r($this->Core->config->ShCMS->DbHost);
 
-        // Render a template
-        $this->DB = new Database($this->Core->config, 'PS_UserData', 'Users_Master' );
+       /*     $db = new fguillot\picodb\Database(
+        fguillot\picodb\UrlParser::getInstance()
+        ->getSettings($this->Core->config->ShCMS->DbType.'://'.$this->Core->config->ShCMS->DbUser.':'.$this->Core->config->ShCMS->DbPass.'@'.$this->Core->config->ShCMS->DbHost.':'.$this->Core->config->ShCMS->DbPort.'./PS_UserData')
+                                          );
+*/
+       // Render a template
+        $this->DB = new oDatabase($this->Core->config, 'PS_UserData', 'Users_Master' );
         +r($this->DB->g('select')->s('table',  "Users_Master"));
+        
         echo $this->Get('templates')->render('profile', ['name' => 'TEST']);
 
         //$this->Render("index");
           // instantiate the loader
-     
     }
+
+
+
+
+
+
 
     public function actionTest(){
         r("Action test!!");
