@@ -4,8 +4,8 @@
 */
 
 //Errors reporting
-//error_reporting(E_ALL);
-//ini_set("display_errors", 1);
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 
 //StartTime for page loading mesures
 define('StartTime',     microtime(true));
@@ -59,5 +59,6 @@ catch(Exception $ex){
     !r("ShCMS internal error: ");
     !r($ex);
 }
-~r('[CORE] ShCMS End'.TimeE());
++r('[CORE] ShCMS End'.TimeE());
+
 ?>

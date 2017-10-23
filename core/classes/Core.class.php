@@ -8,10 +8,8 @@ class Core {
     public $config = array();
 
     public function __construct(){
-        $this->CnfLoad();    
-        $this->CnfLoad("DbPatterns");
-        
-        r($this->config);
+        $this->CnfLoad();  
+        r($this->config);  
         $this->UrlToController();   
     }
 
