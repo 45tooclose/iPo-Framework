@@ -25,6 +25,8 @@ class RootController extends Controller {
 
         // Create new Plates instance
         
+       /* if($this->templates == null){
+            $this->templates = new League\Plates\Engine('./views'); }*/
 
         // Render a template
         $this->DB = new Database($this->Core->config, 'PS_UserData', 'Users_Master' );

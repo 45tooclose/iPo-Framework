@@ -48,6 +48,10 @@ class mssqlDatabase extends Database {
             }
             if($where = 1){
                 $where = "1=1";
+            }else{
+                foreach($where as $condition){
+                    $condition = explode($condition, ' ');
+                }
             }
 
             $query = "SELECT ".$limit.$what." FROM ".mssqlDatabase::TblToFull($fromtbl, $dbanme) . " WHERE ".$where;
