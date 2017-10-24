@@ -35,9 +35,17 @@ include("./core/libs/plates-master/src/Engine.php");
 include("./core/libs/composer-file-loader-master/PackageLoader.php");
 
 // You load your packages
+/*
 $loader = new PackageLoader\PackageLoader();
 $loader->load(__DIR__."/core/vendor/plates");
 $loader->load(__DIR__."/core/vendor/picodb");
+*/
+foreach(scandir(__DIR__."/core/vendor/") as $fle){
+    if( $fle != "." && $fle != ".."){
+        $loader = new PackageLoader\PackageLoader();
+        $loader->load(__DIR__."/core/vendor/".$fle);
+    }
+}
 
 
 
@@ -53,7 +61,6 @@ include("./core/autoloader.inc.php");
 */
 try {
 $test = 0 / 1;
-r($test);
 Core::Init();
 }
 catch(Exception $ex){

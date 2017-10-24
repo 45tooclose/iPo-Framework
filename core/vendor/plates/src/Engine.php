@@ -12,6 +12,7 @@ use League\Plates\Template\Functions;
 use League\Plates\Template\Name;
 use League\Plates\Template\Template;
 
+
 /**
  * Template API and environment settings storage.
  */

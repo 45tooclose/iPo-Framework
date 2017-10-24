@@ -6,18 +6,33 @@ class PackageLoader
 {
     public $path;
     public $dir;
+    public  $bclassname;
+    public  $success;
+    public $ModStatus = array();
 
     public function getComposerFile()
     {
-        return json_decode(file_get_contents($this->dir."/composer.json"), 1);
+        if(file_exists($this->dir."/composer.json")){
+            return json_decode(file_get_contents($this->dir."/composer.json"), 1);            
+        }else{
+            +r("Unable to load json: ".$this->dir."/composer.json");
+        }
     }
 
     public function load($dir)
     {
         $this->dir = $dir;
         $composer = $this->getComposerFile();
-        $this->loadPSR4($composer['autoload']['psr-4']);
-        $this->loadPSR0($composer['autoload']['psr-0']);
+        if(isset($composer['autoload']['psr-4'])){
+            $this->loadPSR4($composer['autoload']['psr-4']);
+        }else{
+            //+r("There is no psr-4 composer argument in ".$dir);
+        }
+        if(isset($composer['autoload']['psr-0'])){
+            $this->loadPSR0($composer['autoload']['psr-0']);
+        }else{
+            //+r("There is no psr-0 composer argument in ".$dir);
+        }
     }
 
     public function loadPSR4($namespaces)
@@ -34,13 +49,17 @@ class PackageLoader
     {
         $dir = $this->dir;
         // Foreach namespace specified in the composer, load the given classes
+        if(gettype($namespaces) != "array"){
+            +r($namespaces . "should be an array");
+            return;
+        }
         foreach ($namespaces as $namespace => $classpaths) {
             if (!is_array($classpaths)) {
                 $classpaths = array($classpaths);
             }
             spl_autoload_register(function ($classname) use ($namespace, $classpaths, $dir, $psr4) {
-               $bclassname = $classname;
-                $success = false;
+               $this->bclassname = $classname;
+               $this->success = false;
                 // Check if the namespace matches the class we are looking for
                 if (preg_match("#^".preg_quote($namespace)."#", $classname)) {
                     // Remove the namespace from the file path since it's psr4
@@ -55,16 +74,18 @@ class PackageLoader
                         $this->path = $fullpath;
                         if (file_exists($fullpath)) {
                             if(include_once $fullpath){
-                                $success = true;
+                                $this->success = true;
                             }
                         }
                     }
                 }
+                if($this->success == true){
+                   if(!isset($this->ModStatus[$this->path]) || (isset($this->ModStatus[$this->path]) && $this->ModStatus[$this->path] != "success")){
 
-                if($success == true){
-                    r("[PSR Loader] Successfully loaded  -> " . $this->path."");                    
-                }else{
-                    +r("[PSR Loader] " . $bclassname."  Not found, unable to load it!");                      
+                   
+                        $this->ModStatus[$this->path] = "success";
+                        r("[PSR Loader] Successfully loaded  -> " . $this->path."");                        
+                   }
                 }
             });
         }

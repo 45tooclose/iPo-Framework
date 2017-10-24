@@ -27,8 +27,13 @@ class Core {
     public function UrlToController(){
 
         $DefaultController = "RootController";  
-        $ChoosedController = null;      
-        $Slug = explode('/',$_GET["path"]);
+        $ChoosedController = null;   
+        
+        if(isset($_GET["path"])){
+            $Slug = explode('/',$_GET["path"]);
+        } else{
+            $Slug = array("/");
+        }
 
         $ControllerArgs = array();    
         foreach($Slug as $key => $val){

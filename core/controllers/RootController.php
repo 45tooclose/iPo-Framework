@@ -28,18 +28,23 @@ class RootController extends Controller {
         
        /* if($this->templates == null){
             $this->templates = new League\Plates\Engine('./views'); }*/
-      +r($this->Core->config->ShCMS->DbHost);
+     // +r($this->Core->config->ShCMS->DbHost);
 
-       /*     $db = new fguillot\picodb\Database(
-        fguillot\picodb\UrlParser::getInstance()
-        ->getSettings($this->Core->config->ShCMS->DbType.'://'.$this->Core->config->ShCMS->DbUser.':'.$this->Core->config->ShCMS->DbPass.'@'.$this->Core->config->ShCMS->DbHost.':'.$this->Core->config->ShCMS->DbPort.'./PS_UserData')
-                                          );
-*/
+        $db = new fguillot\picodb\Database([
+        'driver' => $this->Core->config->ShCMS->DbType,
+        'hostname' => $this->Core->config->ShCMS->DbHost,
+        'username' => $this->Core->config->ShCMS->DbUser,
+        'password' => $this->Core->config->ShCMS->DbPass,
+        'database' => 'PS_UserData',
+    ]);
+                            
+    r($db->table('Users_Master')->asc('UserUID')->findAll());
+    
        // Render a template
-        $this->DB = new oDatabase($this->Core->config, 'PS_UserData', 'Users_Master' );
-        +r($this->DB->g('select')->s('table',  "Users_Master"));
+        //$this->DB = new oDatabase($this->Core->config, 'PS_UserData', 'Users_Master' );
+        //+r($this->DB->g('select')->s('table',  "Users_Master"));
         
-        echo $this->Get('templates')->render('profile', ['name' => 'TEST']);
+       echo $this->Get('templates')->render('profile', ['name' => 'TEST']);
 
         //$this->Render("index");
           // instantiate the loader
