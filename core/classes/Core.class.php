@@ -34,6 +34,7 @@ class Core {
         } else{
             $Slug = array("/");
         }
+        
 
         $ControllerArgs = array();    
         foreach($Slug as $key => $val){
