@@ -6,6 +6,7 @@ class Model {
     public $id;
     public $data_rows;
     public $db;
+    
 
     public function __construct($selectedid){
         $this->Core = CoreLoader::GetCore();

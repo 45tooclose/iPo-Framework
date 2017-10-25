@@ -67,6 +67,11 @@ catch(Exception $ex){
     !r("ShCMS internal error: ");
     !r($ex);
 }
+
+
+/*
+*   ShCMS Ending Point
+*/
 +r('[CORE] ShCMS End'.TimeE());
 
 ?>

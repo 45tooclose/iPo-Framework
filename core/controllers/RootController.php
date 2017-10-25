@@ -47,6 +47,7 @@ class RootController extends Controller {
         +r("Starting model");
         $test = new UsersMasterModel(2);
        //r($test);
+       
        echo $this->Get('templates')->render('profile', ['name' => 'TEST']);
 
         //$this->Render("index");
