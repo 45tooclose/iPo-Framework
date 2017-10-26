@@ -3,6 +3,10 @@
 *   PDO Wrapper providing cross-database egnines compatibilites
 *   And serialisation support
 */
+
+namespace Core;
+use fguillot\picodb;
+
 class oDatabase {
     public $db;
     public $Core;
@@ -10,7 +14,8 @@ class oDatabase {
     public function __construct($databasename){
         $this->dbname = $databasename;
         $this->Core = CoreLoader::GetCore();
-        $this->db = new fguillot\picodb\Database([
+
+        $this->db = new picodb\Database([
             'driver' => $this->Core->config->ShCMS->DbType,
             'hostname' => $this->Core->config->ShCMS->DbHost,
             'username' => $this->Core->config->ShCMS->DbUser,

@@ -1,5 +1,6 @@
 <?php
 
+namespace Core;
 use League\Plates;
 
 class Controller {
@@ -9,7 +10,7 @@ class Controller {
         public function Get($key){
             if($key ==  "templates"){
                 if($this->templates == null){
-                    $this->templates = new League\Plates\Engine('./views');
+                    $this->templates = new Plates\Engine('./views');
                 }
             }
             return $this->$key;

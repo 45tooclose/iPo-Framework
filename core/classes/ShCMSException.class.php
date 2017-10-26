@@ -2,6 +2,10 @@
 /**
 * Définition d'une classe d'exception personnalisée
 */
+
+namespace Core;
+
+
 class ShCMSException extends Exception
 {
   // Redéfinissez l'exception ainsi le message n'est pas facultatif

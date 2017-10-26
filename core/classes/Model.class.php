@@ -1,6 +1,7 @@
 <?php 
-
+namespace Core;
 use fguillot\picodb;
+
 class Model {
         
     public $id          = 0;

@@ -1,4 +1,7 @@
 <?php
+
+namespace Core;
+
 class Config {
 
     public $Data;

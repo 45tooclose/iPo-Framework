@@ -40,6 +40,10 @@ $loader = new PackageLoader\PackageLoader();
 $loader->load(__DIR__."/core/vendor/plates");
 $loader->load(__DIR__."/core/vendor/picodb");
 */
+
+include("./core/autoloader.inc.php");
+
+
 foreach(scandir(__DIR__."/core/vendor/") as $fle){
     if( $fle != "." && $fle != ".."){
         $loader = new PackageLoader\PackageLoader();
@@ -54,21 +58,17 @@ r("[CORE] ShCMS Start - ENV MODE : ".Env ." ".TimeE());
 /*
 *  Registering Autoloader
 */
-include("./core/autoloader.inc.php");
 
 /*
 *   ShCMS Entry Point
 */
 try {
-    $test = array()[0][0];
-    Core::Init();
+    Core\Core::Init();
 }
 catch(Exception $ex){
     !r("ShCMS internal error: ");
     !r($ex);
 }
-
-
 /*
 *   ShCMS Ending Point
 */

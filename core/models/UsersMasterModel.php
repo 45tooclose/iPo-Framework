@@ -1,5 +1,6 @@
 <?php  
 
+namespace Core;
 class UsersMasterModel extends Model {
 
     public $IndexColName    =   "UserUID";

@@ -1,5 +1,8 @@
 <?php 
 
+namespace Core;
+
+
 class CoreLoader {
     public static function SetCore($core){
         $GLOBALS["Core"] = $core;

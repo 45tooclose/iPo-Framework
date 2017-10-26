@@ -1,6 +1,8 @@
 <?php
-        use fguillot\picodb;
 
+namespace Core;
+use fguillot\picodb;
+use AdminPanel;
 class RootController extends Controller {
 
     public function __construct($Core,$args){
@@ -46,6 +48,10 @@ class RootController extends Controller {
         +r("Starting model");
         $test = new UsersMasterModel(2);
         r($test);
+
+
+        $testmodel2 = new Modules\AdminPanel\TestModel('c');
+
         $test->Pw = "654";
         //$test->save();
      

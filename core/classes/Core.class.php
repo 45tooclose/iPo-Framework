@@ -3,6 +3,9 @@
 *   Class Core
 *
 */
+
+namespace Core;
+
 class Core {
 
     public $config = array();
@@ -50,6 +53,7 @@ class Core {
         if($ChoosedController == null){
             $ChoosedController = $DefaultController;
         }
+        $ChoosedController = trim("Core\ ") . $ChoosedController;
         $Controller = new $ChoosedController($this,$ControllerArgs);
     }
 
