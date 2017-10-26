@@ -46,8 +46,10 @@ class RootController extends Controller {
         //+r($this->DB->g('select')->s('table',  "Users_Master"));
         +r("Starting model");
         $test = new UsersMasterModel(2);
-       //r($test);
-       
+        r($test->out());
+        $test->Pw = "654";
+        //$test->save();
+     
        echo $this->Get('templates')->render('profile', ['name' => 'TEST']);
 
         //$this->Render("index");

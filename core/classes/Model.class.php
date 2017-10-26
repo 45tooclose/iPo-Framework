@@ -3,53 +3,81 @@
 use fguillot\picodb;
 class Model {
         
-    public $id;
-    public $data_rows;
-    public $db;
-    
+    public $id          = 0;
+    public $data_rows   = array();
+    public $data_cells  = array();
+    public $db          = null;
+    public $Core        = null;
 
-    public function __construct($selectedid){
+    public function __construct($selectedid = 0){
         $this->Core = CoreLoader::GetCore();
         r("MODEL  : ".$selectedid);
-            $this->id = $selectedid;
-            $this->db = new fguillot\picodb\Database([
-                'driver' => $this->Core->config->ShCMS->DbType,
-                'hostname' => $this->Core->config->ShCMS->DbHost,
-                'username' => $this->Core->config->ShCMS->DbUser,
-                'password' => $this->Core->config->ShCMS->DbPass,
-                'database' => $this->DatabaseName,
-            ]);
-               // r($this->id);
-            $this->data_rows = $this->db->table('Users_Master')->eq($this->IndexColName, $this->id)->asc('UserUID')->findAll();
-            foreach($this->data_rows[0] as $key => $val){
-                $this->$key = $val;
-            }
-            r($this->UserUID);
-           /* foreach($this->data_rows as $key => $val){
-                $this->$key = $val;
-            }*/
+        $this->db = new fguillot\picodb\Database([
+            'driver' => $this->Core->config->ShCMS->DbType,
+            'hostname' => $this->Core->config->ShCMS->DbHost,
+            'username' => $this->Core->config->ShCMS->DbUser,
+            'password' => $this->Core->config->ShCMS->DbPass,
+            'database' => $this->DatabaseName,
+        ]);
+
+
+        if($selectedid != 0){
+                $this->id = $selectedid;
+                   // r($this->id);
+                $this->data_rows = $this->db->table($this->TableName)->eq($this->IndexColName, $this->id)->asc('UserUID')->findAll();
+                foreach($this->data_rows[0] as $key => $val){
+                    $this->data_cells[$key] = $val;
+                }
+               /* foreach($this->data_rows as $key => $val){
+                    $this->$key = $val;
+                }*/
+        }
     }
+
 
     public function __get($key){
         //READ
-        return $this->$key;
+        if(isset($this->$key)){
+            return $this->$key;
+        }else{
+            return $this->data_cells[$key];            
+        }
     }
 
     public function __set($key, $val){
-        $this->$key = $val;
+        if(isset($this->$key)){
+            $this->$key = $val;
+        }else{
+            $this->data_cells[$key] = $val;
+        }
+    }
+
+
+    public function out(){
+        return $this->data_cells;
     }
 
     public function save(){
         //UPDATE
-        if(isset($this->id)){
+        //$db->table('mytable')->eq('id', 1)->save(['column1' => 'hey']);
+        if($this->id != 0){
+            foreach( $this->data_cells as $key => $val){
+                $this->db->table($this->TableName)->eq($this->IndexColName, $this->id)->save([$key => $val]);
+                
+            }
 
         }else{
-        //INSERT
+        //
+            unset($this->data_cells[$this->IndexColName]);
+            $this->db->table($this->TableName)->eq($this->IndexColName, $this->id)->insert($this->data_cells);
+        
         }
     }
 
     public function delete(){
         //DELETE
+        $this->db->table($this->TableName)->eq($this->IndexColName, $this->id)->remove();
+        
     }
 
 }
