@@ -39,14 +39,13 @@ class RootController extends Controller {
         'database' => 'PS_UserData',
     ]);*/
                             
-   // r($db->table('Users_Master')->asc('UserUID')->findAll());
     
        // Render a template
         //$this->DB = new oDatabase($this->Core->config, 'PS_UserData', 'Users_Master' );
         //+r($this->DB->g('select')->s('table',  "Users_Master"));
         +r("Starting model");
         $test = new UsersMasterModel(2);
-        r($test->out());
+        r($test);
         $test->Pw = "654";
         //$test->save();
      

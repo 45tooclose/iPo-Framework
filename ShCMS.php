@@ -60,8 +60,8 @@ include("./core/autoloader.inc.php");
 *   ShCMS Entry Point
 */
 try {
-$test = 0 / 1;
-Core::Init();
+    $test = array()[0][0];
+    Core::Init();
 }
 catch(Exception $ex){
     !r("ShCMS internal error: ");

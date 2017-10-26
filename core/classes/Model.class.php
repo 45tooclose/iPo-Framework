@@ -12,13 +12,10 @@ class Model {
     public function __construct($selectedid = 0){
         $this->Core = CoreLoader::GetCore();
         r("MODEL  : ".$selectedid);
-        $this->db = new fguillot\picodb\Database([
-            'driver' => $this->Core->config->ShCMS->DbType,
-            'hostname' => $this->Core->config->ShCMS->DbHost,
-            'username' => $this->Core->config->ShCMS->DbUser,
-            'password' => $this->Core->config->ShCMS->DbPass,
-            'database' => $this->DatabaseName,
-        ]);
+
+
+        $this->db = new oDatabase($this->DatabaseName);
+        $this->db = $this->db->get();
 
 
         if($selectedid != 0){
@@ -32,6 +29,8 @@ class Model {
                     $this->$key = $val;
                 }*/
         }
+
+        return $this;
     }
 
 
@@ -53,10 +52,9 @@ class Model {
     }
 
 
-    public function out(){
+    public function data(){
         return $this->data_cells;
     }
-
     public function save(){
         //UPDATE
         //$db->table('mytable')->eq('id', 1)->save(['column1' => 'hey']);
