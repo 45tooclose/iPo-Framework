@@ -22,6 +22,7 @@ class Core {
             $this->config = (object)  $this->config;
     }
 
+    
     /*
     *   Si $Slug = site.com/ OR site.com            => if exists MainController->action('Index') runing it
     *   Sinon si site.com/aaaa OR site.com/aaaa     => if exists MainController->action('aaaa') runing it

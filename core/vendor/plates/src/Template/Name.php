@@ -160,13 +160,18 @@ class Name
      */
     public function getPath()
     {
+        !r($this->folder);
         if (is_null($this->folder)) {
+            !r("A");
+            
             return $this->getDefaultDirectory() . DIRECTORY_SEPARATOR . $this->file;
         }
 
         $path = $this->folder->getPath() . DIRECTORY_SEPARATOR . $this->file;
 
         if (!is_file($path) and $this->folder->getFallback() and is_file($this->getDefaultDirectory() . DIRECTORY_SEPARATOR . $this->file)) {
+            !r("B");
+            
             $path = $this->getDefaultDirectory() . DIRECTORY_SEPARATOR . $this->file;
         }
 

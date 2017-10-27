@@ -19,7 +19,7 @@ define('IsDBG',         true);  //Will display the entire debuging outputs
 #define('DisplayAll',    false);     //Will not render the page, it will dump all the variables before exit
 define('DisplayAll',    true);       //Will render the page
 
-//Define environement mode : dev, prepod or prod (you can create custom environement by changing ENV in core/config/conf.env.ini filenames)
+//Define environement mode : dev, prepod or prod (you can create custom environement by changing env in core/config/conf.env.ini filenames)
 define('Env',           'dev');
 
 function TimeE(){
