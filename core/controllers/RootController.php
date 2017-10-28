@@ -37,7 +37,7 @@ class RootController extends Controller {
 
         $test->Pw = "654";
         //$test->save();
-        echo $this->Get('templates')->render('profile', ['name' => 'TEST']);
+        echo $this->Get('templates')->render('layouts/main', ['name' => 'TEST']);
         //$this->Render("index");
           // instantiate the loader
     }
