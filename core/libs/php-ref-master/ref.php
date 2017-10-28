@@ -8,9 +8,15 @@
  */
 function r(){
 
-  if(IsDBG != true){
-      return;
+  if(isset($GLOBALS["IsDbg"]) && $GLOBALS["IsDbg"] == false){
+    return;
   }
+  if(!isset($GLOBALS["IsDbg"]) ){
+    if(IsDBG != true){
+      return;
+    }
+  }
+
 
   // arguments passed to this function
   $args = func_get_args();

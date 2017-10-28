@@ -15,6 +15,8 @@ define('StartTime',     microtime(true));
 define('IsDBG',         true);  //Will display the entire debuging outputs            
 #define('IsDBG',   false);      //Will not display debugging outputs
 
+define('OnPageDBG',     true);  //Will display on-page errors
+
 //DEV : false or true // PROD : false
 #define('DisplayAll',    false);     //Will not render the page, it will dump all the variables before exit
 define('DisplayAll',    true);       //Will render the page

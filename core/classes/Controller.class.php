@@ -27,7 +27,14 @@ class Controller {
             } 
         }
         public function Get($key){
-  
+            if($key == "templates" && DisplayAll == false){
+                return new EmptyRenderer();
+            }
+            if(OnPageDBG == true){
+                $GLOBALS["IsDbg"] = true;
+            }else{
+                $GLOBALS["IsDbg"] = false;
+            }
             return $this->$key;
         }
 
