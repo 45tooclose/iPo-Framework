@@ -13,12 +13,11 @@ class Controller {
                 $this->templates = new Plates\Engine('./views');
                 foreach(scandir('./themes/') as $flodername){
                     if(!in_array($flodername,[".",".."])){
-                        $theme_floder = './views/1';//.$flodername;
+                        $theme_floder = './themes/'.$flodername;
                         +r("added : ".$theme_floder);
                         $this->templates->addFolder($flodername, $theme_floder, true);
                     }
                 }
-
                 $this->templates->loadExtension(new Plates\Extension\Asset('./views/assets/', true));
                 $this->templates->loadExtension(new Plates\Extension\URI(
                     $this->get__PATH_INFO($_SERVER['REQUEST_URI'])

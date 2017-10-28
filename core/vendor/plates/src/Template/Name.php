@@ -4,6 +4,7 @@ namespace League\Plates\Template;
 
 use League\Plates\Engine;
 use LogicException;
+use Core;
 
 /**
  * A template name.
@@ -160,10 +161,35 @@ class Name
      */
     public function getPath()
     {
-        !r($this->folder);
+        $filepath = $this->getDefaultDirectory() . "/" . $this->file;
+        if(file_exists($filepath)){
+            +r("Loaded in views : ".$this->file);
+            return $filepath;
+        }else{
+            $core = Core\CoreLoader::GetCore();
+            $main_theme_path = './themes/'.$core->config->ShCMS->MainTheme.'/'.$this->file;
+            if(file_exists($main_theme_path)){
+                return $main_theme_path;
+            }
+            $test = $this->getEngine();
+            $floders = (array) $test->getFolders();
+            $new_array = array_values($floders);
+            foreach( $new_array as $num => $val){
+                foreach( $new_array[$num] as $key => $val){
+                    +r($key);
+                    +r($val->getPath());
+                    $filepath = $val->getPath() . "/" . $this->file;
+                    if(file_exists($filepath)){
+                        +r("Loaded in themes : ".$this->file);                    
+                        return $filepath;
+                    }
+                }
+            }
+            +r("Unable to load : ".$this->file);                    
+            return $filepath;
+        }
+/*
         if (is_null($this->folder)) {
-            !r("A");
-            
             return $this->getDefaultDirectory() . DIRECTORY_SEPARATOR . $this->file;
         }
 
@@ -174,7 +200,7 @@ class Name
             
             $path = $this->getDefaultDirectory() . DIRECTORY_SEPARATOR . $this->file;
         }
-
+*/
         return $path;
     }
 
