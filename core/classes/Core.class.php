@@ -44,7 +44,7 @@ class Core {
         foreach($Slug as $key => $val){
             $tmp_controller = $val."Controller";
             preg_match_all('/^[A-Za-z]{1,}$/i',$val,$matches);
-            if($tmp_controller != "Controller" && count($matches[0]) > 0 && is_alpa  && class_exists($tmp_controller)){
+            if($tmp_controller != "Controller" && count($matches[0]) > 0  && class_exists($tmp_controller)){
                 r("FOUNDED ".$tmp_controller);
                 $ChoosedController = $tmp_controller;
                 $ControllerArgs = array();                

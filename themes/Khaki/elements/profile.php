@@ -112,7 +112,7 @@
                 <div class="nk-nav-table">
 
                     <a href="index.html" class="nk-nav-logo">
-                        <img src="assets/images/logo.svg" alt="" width="70">
+                        <img src="<?=Core\AssetMgr::load("images/logo.svg")?>" alt="" width="70">
                     </a>
 
                     <ul class="nk-nav nk-nav-right hidden-md-down" data-nav-mobile="#nk-nav-mobile">
@@ -1273,7 +1273,7 @@
 
                                         <div class="nk-widget-post">
                                             <a href="store-product.html?i=1" class="nk-image-box-1 nk-post-image">
-                                                <img src="assets/images/product-6-1-sm.jpg" alt="Welder Quartz Watch">
+                                                <img src="<?=Core\AssetMgr::load("images/product-6-1-sm.jpg")?>" alt="Welder Quartz Watch">
                                             </a>
                                             <h3 class="nk-post-title">
                                                 <a href="#" class="pull-right">
@@ -1286,7 +1286,7 @@
 
                                         <div class="nk-widget-post">
                                             <a href="store-product.html?i=3" class="nk-image-box-1 nk-post-image">
-                                                <img src="assets/images/product-1-1-sm.jpg" alt="Motorola Moto 360 Sport">
+                                                <img src="<?=Core\AssetMgr::load("images/product-1-1-sm.jpg")?>" alt="Motorola Moto 360 Sport">
                                             </a>
                                             <h3 class="nk-post-title">
                                                 <a href="#" class="pull-right">
@@ -1386,7 +1386,7 @@
 
                     <div class="nk-nav-row">
                         <a href="index.html" class="nk-nav-logo">
-                            <img src="assets/images/logo.svg" alt="" width="130">
+                            <img src="<?=Core\AssetMgr::load("images/logo.svg")?>" alt="" width="130">
                         </a>
                     </div>
 
@@ -1540,7 +1540,7 @@
                 <div class="nk-nav-table">
                     <div class="nk-nav-row">
                         <a href="index.html" class="nk-nav-logo">
-                            <img src="assets/images/logo.svg" alt="" width="70">
+                            <img src="<?=Core\AssetMgr::load("images/logo.svg")?>" alt="" width="70">
                         </a>
                     </div>
                     <div class="nk-nav-row nk-nav-row-full nk-nav-row-top">
@@ -1629,7 +1629,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="nk-image-box-1-a nk-no-effect demo-image">
                             <a href="demo-corporate.html" class="nk-image-box-link"></a>
-                            <img src="assets/images/demo-corporate.jpg" alt="">
+                            <img src="<?=Core\AssetMgr::load("images/demo-corporate.jpg")?>" alt="">
                             <div class="nk-image-box-overlay nk-image-box-center">
                                 <div>
                                     <h2 class="nk-image-box-title nk-portfolio-title h3">Corporate</h2>
@@ -1645,7 +1645,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="nk-image-box-1-a nk-no-effect demo-image">
                             <a href="demo-barber.html" class="nk-image-box-link"></a>
-                            <img src="assets/images/demo-barber.jpg" alt="">
+                            <img src="<?=Core\AssetMgr::load("images/demo-barber.jpg")?>" alt="">
                             <div class="nk-image-box-overlay nk-image-box-center">
                                 <div>
                                     <h2 class="nk-image-box-title nk-portfolio-title h3">Barber</h2>
@@ -1661,7 +1661,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="nk-image-box-1-a nk-no-effect demo-image">
                             <a href="demo-drone.html" class="nk-image-box-link"></a>
-                            <img src="assets/images/demo-drone.jpg" alt="">
+                            <img src="<?=Core\AssetMgr::load("images/demo-drone.jpg")?>" alt="">
                             <div class="nk-image-box-overlay nk-image-box-center">
                                 <div>
                                     <h2 class="nk-image-box-title nk-portfolio-title h3">Quadrocopter</h2>
@@ -1677,7 +1677,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="nk-image-box-1-a nk-no-effect demo-image">
                             <a href="demo-music-label.html" class="nk-image-box-link"></a>
-                            <img src="assets/images/demo-music-label.jpg" alt="">
+                            <img src="<?=Core\AssetMgr::load("images/demo-music-label.jpg")?>" alt="">
                             <div class="nk-image-box-overlay nk-image-box-center">
                                 <div>
                                     <h2 class="nk-image-box-title nk-portfolio-title h3">Music Label</h2>
@@ -1693,7 +1693,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="nk-image-box-1-a nk-no-effect demo-image">
                             <a href="demo-band.html" class="nk-image-box-link"></a>
-                            <img src="assets/images/demo-band.jpg" alt="">
+                            <img src="<?=Core\AssetMgr::load("images/demo-band.jpg")?>" alt="">
                             <div class="nk-image-box-overlay nk-image-box-center">
                                 <div>
                                     <h2 class="nk-image-box-title nk-portfolio-title h3">Band</h2>
@@ -1709,7 +1709,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="nk-image-box-1-a nk-no-effect demo-image">
                             <a href="demo-gaming.html" class="nk-image-box-link"></a>
-                            <img src="assets/images/demo-gaming.jpg" alt="">
+                            <img src="<?=Core\AssetMgr::load("images/demo-gaming.jpg")?>" alt="">
                             <div class="nk-image-box-overlay nk-image-box-center">
                                 <div>
                                     <h2 class="nk-image-box-title nk-portfolio-title h3">Gaming</h2>
@@ -1725,7 +1725,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="nk-image-box-1-a nk-no-effect demo-image">
                             <a href="demo-app-2.html" class="nk-image-box-link"></a>
-                            <img src="assets/images/demo-app-2.jpg" alt="">
+                            <img src="<?=Core\AssetMgr::load("images/demo-app-2.jpg")?>" alt="">
                             <div class="nk-image-box-overlay nk-image-box-center">
                                 <div>
                                     <h2 class="nk-image-box-title nk-portfolio-title h3">App Landing</h2>
@@ -1741,7 +1741,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="nk-image-box-1-a nk-no-effect demo-image">
                             <a href="demo-app.html" class="nk-image-box-link"></a>
-                            <img src="assets/images/demo-app.jpg" alt="">
+                            <img src="<?=Core\AssetMgr::load("images/demo-app.jpg")?>" alt="">
                             <div class="nk-image-box-overlay nk-image-box-center">
                                 <div>
                                     <h2 class="nk-image-box-title nk-portfolio-title h3">App Showcase</h2>
@@ -1757,7 +1757,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="nk-image-box-1-a nk-no-effect demo-image">
                             <a href="demo-gallery.html" class="nk-image-box-link"></a>
-                            <img src="assets/images/demo-gallery.jpg" alt="">
+                            <img src="<?=Core\AssetMgr::load("images/demo-gallery.jpg")?>" alt="">
                             <div class="nk-image-box-overlay nk-image-box-center">
                                 <div>
                                     <h2 class="nk-image-box-title nk-portfolio-title h3">Gallery</h2>
@@ -1792,7 +1792,7 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <a href="blog-list.html" target="_blank">
-                        <img src="assets/images/demo-blog-page.jpg" class="nk-img demo-image" alt="">
+                        <img src="<?=Core\AssetMgr::load("images/demo-blog-page.jpg")?>" class="nk-img demo-image" alt="">
                     </a>
                 </div>
             </div>
@@ -1819,7 +1819,7 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <a href="store.html" target="_blank">
-                        <img src="assets/images/demo-store-page.jpg" class="nk-img demo-image" alt="">
+                        <img src="<?=Core\AssetMgr::load("images/demo-store-page.jpg")?>" class="nk-img demo-image" alt="">
                     </a>
                 </div>
             </div>
@@ -1845,7 +1845,7 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <a href="portfolio-1-gap.html" target="_blank">
-                        <img src="assets/images/demo-portfolio-page.jpg" class="nk-img demo-image" alt="">
+                        <img src="<?=Core\AssetMgr::load("images/demo-portfolio-page.jpg")?>" class="nk-img demo-image" alt="">
                     </a>
                 </div>
             </div>
@@ -1905,7 +1905,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 text-center">
-                        <img class="nk-img-fit" src="assets/images/mock-iphone-1.jpg" alt="">
+                        <img class="nk-img-fit" src="<?=Core\AssetMgr::load("images/mock-iphone-1.jpg")?>" alt="">
                         <div class="nk-gap hidden-md-up"></div>
                     </div>
                     <div class="col-md-4">
@@ -1949,7 +1949,7 @@
                 <div class="row vertical-gap align-items-center">
                     <div class="col-md-5 push-md-7">
                         <div class="nk-gif">
-                            <img src="assets/images/mock-iphone-animated.jpg" data-gif="assets/images/mock-iphone-animated.gif" alt="">
+                            <img src="<?=Core\AssetMgr::load("images/mock-iphone-animated.jpg")?>" data-gif="<?=Core\AssetMgr::load("images/mock-iphone-animated.gif")?>" alt="">
                         </div>
                     </div>
                     <div class="col-md-7 pull-md-5">
@@ -1962,7 +1962,7 @@
                 <div class="row vertical-gap align-items-center">
                     <div class="col-md-5">
                         <div class="nk-gif">
-                            <img src="assets/images/mock-iphone-animated-2.jpg" data-gif="assets/images/mock-iphone-animated-2.gif" alt="">
+                            <img src="<?=Core\AssetMgr::load("images/mock-iphone-animated-2.jpg")?>" data-gif="<?=Core\AssetMgr::load("images/mock-iphone-animated-2.gif")?>" alt="">
                         </div>
                     </div>
                     <div class="col-md-7">
@@ -1975,7 +1975,7 @@
                 <div class="row vertical-gap align-items-center">
                     <div class="col-md-5 push-md-7">
                         <div class="nk-gif">
-                            <img src="assets/images/mock-iphone-animated-3.jpg" data-gif="assets/images/mock-iphone-animated-3.gif" alt="">
+                            <img src="<?=Core\AssetMgr::load("images/mock-iphone-animated-3.jpg")?>" data-gif="<?=Core\AssetMgr::load("images/mock-iphone-animated-3.gif")?>" alt="">
                         </div>
                     </div>
                     <div class="col-md-7 pull-md-5">
