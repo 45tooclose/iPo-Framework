@@ -84,7 +84,7 @@ class PackageLoader
 
                    
                         $this->ModStatus[$this->path] = "success";
-                        r("[PSR Loader] Successfully loaded  -> " . $this->path."");                        
+                       // r("[PSR Loader] Successfully loaded  -> " . $this->path."");                        
                    }
                 }
             });

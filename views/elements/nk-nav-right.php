@@ -11,9 +11,10 @@
 
                     <div class="nk-nav-row">
                         <a href="index.html" class="nk-nav-logo">
-                            <img src="assets/images/logo.svg" alt="" width="130">
+                            <img src="<?=Core\AssetMgr::load("images/shaiya_eu_medium.png")?>" alt="" width="281">
                         </a>
                     </div>
+      
 
                     <!--
                     Additional Classes:
@@ -23,104 +24,41 @@
                 -->
                     <div class="nk-nav-row nk-nav-row-full nk-nav-row-center">
                         <ul class="nk-nav">
-
+                            <li>  
+                                <a href="#" class="nk-title" style="font-size:2em;">Member Area</a></li>
                             <li>
-                                <a href="page-about-me.html">
-                About Me
-                
-            </a>
+                                <a href="#"> My Profile </a>
                             </li>
                             <li>
-                                <a href="page-about-us.html">
-                About Us
-                
-            </a>
+                                <a href="#"> My Private messages  </a>
                             </li>
                             <li>
-                                <a href="page-team.html">
-                Team
-                
-            </a>
-                            </li>
-                            <li>
-                                <a href="page-contact.html">
-                Contact
-                
-            </a>
+                                <a href="#">  My Tickets  </a>
                             </li>
                             <li class="active">
-                                <a href="page-coming-soon.html">
-                Coming Soon
-                
-            </a>
+                                <a href="#1"> My characters </a>
                             </li>
                             <li>
-                                <a href="page-404.html">
-                404
-                
-            </a>
+                                <a href="#1"> My guild </a>
                             </li>
-                            <li class=" nk-drop-item">
-                                <a href="#">
-                Sub Menu Example
-                
-            </a>
+                            <li class=" nk-drop-item"> <a href="#"> Settings  </a>
                                 <ul class="dropdown">
-
                                     <li>
-                                        <a href="#1">
-                Sub Item 1
-                
-            </a>
+                                        <a href="#1"> Privacy Settings </a>
                                     </li>
                                     <li class=" nk-drop-item">
-                                        <a href="#2">
-                Sub Item 2
-                
-            </a>
+                                        <a href="#2"> Game Settings  </a>
                                         <ul class="dropdown">
-
                                             <li>
-                                                <a href="#1">
-                Sub Item 1
-                
-            </a>
-                                            </li>
-                                            <li>
-                                                <a href="#2">
-                Sub Item 2
-                
-            </a>
+                                                <a href="#1"> Sub Item 1 </a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li class=" nk-drop-item">
-                                        <a href="#3">
-                Sub Item 3
-                
-            </a>
+                                        <a href="#3"> Sub Item 3</a>
                                         <ul class="dropdown">
-
                                             <li>
-                                                <a href="#">
-                Sub Item
-                
-            </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class=" nk-drop-item">
-                                        <a href="#4">
-                Sub Item 4
-                
-            </a>
-                                        <ul class="dropdown">
-
-                                            <li>
-                                                <a href="#">
-                Sub Item
-                
-            </a>
+                                                <a href="#"> Sub Item</a>
                                             </li>
                                         </ul>
                                     </li>

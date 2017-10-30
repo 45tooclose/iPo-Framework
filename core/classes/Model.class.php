@@ -1,7 +1,8 @@
 <?php 
 namespace Core;
 use fguillot\picodb;
-
+use \ReflectionClass;
+use \ReflectionExtension;
 class Model {
         
     public $id          = 0;
@@ -10,10 +11,15 @@ class Model {
     public $db          = null;
     public $Core        = null;
 
+
+
     public function __construct($selectedid = 0){
         $this->Core = CoreLoader::GetCore();
-        r("MODEL  : ".$selectedid);
+ //       r("MODEL  : ".$selectedid);
 
+     //   !r(get_class($this));   
+     
+    
 
         $this->db = new oDatabase($this->DatabaseName);
         $this->db = $this->db->get();

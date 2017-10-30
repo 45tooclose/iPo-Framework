@@ -163,7 +163,7 @@ class Name
     {
         $filepath = $this->getDefaultDirectory() . "/" . $this->file;
         if(file_exists($filepath)){
-            +r("Loaded in views : ".$this->file);
+           // +r("Loaded in views : ".$this->file);
             return $filepath;
         }else{
             $core = Core\CoreLoader::GetCore();
@@ -176,11 +176,11 @@ class Name
             $new_array = array_values($floders);
             foreach( $new_array as $num => $val){
                 foreach( $new_array[$num] as $key => $val){
-                    +r($key);
-                    +r($val->getPath());
+                  //  +r($key);
+                  //  +r($val->getPath());
                     $filepath = $val->getPath() . "/" . $this->file;
                     if(file_exists($filepath)){
-                        +r("Loaded in themes : ".$this->file);                    
+                        //+r("Loaded in themes : ".$this->file);                    
                         return $filepath;
                     }
                 }

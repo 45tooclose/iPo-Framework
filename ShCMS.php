@@ -4,18 +4,18 @@
 */
 
 //Errors reporting
-//error_reporting(E_ALL);
-ini_set("display_errors", 0);
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 
 //StartTime for page loading mesures
 define('StartTime',     microtime(true));
 
 
 //DEV : true // PROD : false
-define('IsDBG',         false);  //Will display the entire debuging outputs            
+define('IsDBG',         true);  //Will display the entire debuging outputs            
 #define('IsDBG',   false);      //Will not display debugging outputs
 
-define('OnPageDBG',     false);  //Will display on-page errors
+define('OnPageDBG',     true);  //Will display on-page errors
 
 //DEV : false or true // PROD : false
 #define('DisplayAll',    false);     //Will not render the page, it will dump all the variables before exit

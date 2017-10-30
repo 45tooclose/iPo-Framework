@@ -14,7 +14,7 @@ class Controller {
                 foreach(scandir('./themes/') as $flodername){
                     if(!in_array($flodername,[".",".."])){
                         $theme_floder = './themes/'.$flodername;
-                        +r("added : ".$theme_floder);
+                        //+r("added : ".$theme_floder);
                         $this->templates->addFolder($flodername, $theme_floder, true);
                     }
                 }

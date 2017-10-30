@@ -27,7 +27,7 @@ spl_autoload_register(
                     $tmp_class = $tmp_namespace[3];
                     
                 }
-                +r($tmp_class);
+                //+r($tmp_class);
             }
 
          
@@ -54,11 +54,11 @@ spl_autoload_register(
         }
         try{
             if (!class_exists($class)) {
-                 r($path);
-                 r($class);
+               //  r($path);
+                 //r($class);
                  if(include($path)){
                     if (class_exists($class)):
-                        r("[Core Loader] Success fully loaded : ".$tmp_class);
+                     //   r("[Core Loader] Success fully loaded : ".$tmp_class);
                      else:
     
                         +r("[Core Loader] 0 : Error while loading : ".$tmp_class." in : ".$tmp_class);

@@ -10,12 +10,12 @@ class RootController extends Controller {
         CoreLoader::SetCore($Core);
         $this->Core = $Core;
 
-        r("Starting RootController with:");
-        r($args);
+       // r("Starting RootController with:");
+       // r($args);
 
         $action = ((strlen($args[0]) > 0) ? $args[0] : "Index");
 
-        r($action);
+       // r($action);
 
         $actionname = "action".$action;
 
@@ -28,13 +28,14 @@ class RootController extends Controller {
 
     public function actionIndex(){
 
-        +r("Starting model");
+     //   +r("Starting model");
         $test = new UsersMasterModel(2);
-        r($test);
+      //  r($test);
 
 
         $testmodel2 = new Modules\AdminPanel\TestModel('c');
 
+        
         $test->Pw = "654";
         //$test->save();
         echo $this->Get('templates')->render('layouts/main', ['name' => 'TEST']);

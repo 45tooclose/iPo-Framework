@@ -31,6 +31,8 @@
 <link rel="stylesheet" type="text/css" href="<?=Core\AssetMgr::load("plugins/revolution/css/layers.css")?>">
 <link rel="stylesheet" type="text/css" href="<?=Core\AssetMgr::load("plugins/revolution/css/navigation.css")?>">
 
+<link rel="stylesheet" href="<?=Core\AssetMgr::load("css/rpg-awesome.css")?>">
+
 <!-- Flickity -->
 <link rel="stylesheet" href="<?=Core\AssetMgr::load("bower_components/flickity/dist/flickity.min.css")?>">
 
