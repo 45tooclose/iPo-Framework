@@ -1,8 +1,11 @@
 <?php 
 namespace Core;
 
-class AssetMgr {
-    static public function load($filename){
+class AssetMgr extends Core{
+    static public function load_hookable($filename){
+        if(gettype($filename) == "array"){
+            $filename = $filename[0];
+        }
         $core = CoreLoader::GetCore();
         $view_name = './views/assets/'.$filename;
         if(file_exists($view_name)){

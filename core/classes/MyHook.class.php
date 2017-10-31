@@ -8,8 +8,8 @@ Class MyHook extends Core {
         $this->SetChild($this);
     }
 
-    public static function OnHookInit(){
-        return new self();
+    public static function OnHookInit($args1 = null,$args2 = null,$args3 = null){
+        return new self(func_get_args());
     }
     
     public function Addition_hook($int,$int2){

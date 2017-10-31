@@ -28,7 +28,7 @@ class Core {
         
     }
 
-    public function Render() {
+    public function Render_hookable() {
         $this->UrlToController();   
     }
 
@@ -42,6 +42,46 @@ class Core {
         return $int + $int2;
     }
 
+    public static function __callStatic($function, $args)
+    {
+            $ClassMgr = new ClassMgr();        
+            $childs = array();
+        
+            $hooks = 0;
+
+            $oj_name = explode('_hook',$function);
+            $naked_function_name = $oj_name[0];
+            $hook_function_name = $naked_function_name."_hook";
+            $hookable_function_name = $naked_function_name."_hookable";
+
+            $childs[get_called_class()] = $ClassMgr->ParentToChilds(get_called_class());
+            foreach($childs[get_called_class()] as $child){
+                    if(!stristr($child,"\\")){
+                        $child = trim(("Core\\").$child);
+                    }
+                    $child = implode('',explode(' ',$child));
+                    //+r($child);
+                    if(class_exists($child)){
+                        $methods = get_class_methods($child);
+                        if(in_array($hook_function_name, $methods)){
+                            $hooks++;                             
+                           // !r($function. " hooked using : ".$child);
+                            $tm2 = $child."::".$hook_function_name;
+                            if($function == $naked_function_name){
+                                return forward_static_call(array($child, $hook_function_name), $args);
+                            }           
+                        }
+                    }
+            }
+            $slf = get_called_class();
+            if($hooks == 0 && $function == $naked_function_name){
+               // print_r($args);
+                //r(($args[count($args) - 1]));
+           
+                return forward_static_call(array(get_called_class(), $hookable_function_name), $args);
+            } 
+            return true;
+    }
  	public function __call($function, $args) {
             if(null == ($this->ClassMgr)){
                 $this->ClassMgr = new ClassMgr();        
@@ -55,12 +95,14 @@ class Core {
                 $hookable_function_name = $naked_function_name."_hookable";
 
                 $this->childs[get_called_class()] = $this->ClassMgr->ParentToChilds(get_called_class());
+                
+                
                 foreach($this->childs[get_called_class()] as $child){
                         if(!stristr($child,"\\")){
                             $child = trim(("Core\\").$child);
                         }
                         $child = implode('',explode(' ',$child));
-                        +r($child);
+                        //+r($child);
                         if(class_exists($child)){
                             $methods = get_class_methods($child);
                             if(in_array('OnHookInit',$methods) && in_array($hook_function_name, $methods)){
@@ -69,13 +111,13 @@ class Core {
                                 $hooks++;                             
                                 !r($function. " hooked using : ".$child);
                                 if($function == $naked_function_name){
-                                    return( call_user_func_array(array($this->current_child, $hook_function_name), $args));
+                                    return call_user_func_array(array($this->current_child, $hook_function_name), $args);
                                 }           
                             }
                         }
                 }
                 if($hooks == 0 && ($function == $naked_function_name)){
-                    return( call_user_func_array(array($this, $hookable_function_name), $args));                    
+                    return call_user_func_array(array($this, $hookable_function_name), $args);                    
                 }
 
             }

@@ -1,5 +1,5 @@
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /ShCMS.php?path=$1 [NC,L,QSA]
-RewriteRule ^$     /ShCMS.php [NC,L,QSA]
+RewriteRule ^(.*)$ /iPo.php?path=$1 [NC,L,QSA]
+RewriteRule ^$     /iPo.php [NC,L,QSA]

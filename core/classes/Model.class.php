@@ -3,7 +3,7 @@ namespace Core;
 use fguillot\picodb;
 use \ReflectionClass;
 use \ReflectionExtension;
-class Model {
+class Model  extends Core {
         
     public $id          = 0;
     public $data_rows   = array();

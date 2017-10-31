@@ -2,7 +2,7 @@
 
 namespace Core;
 
-class Config {
+class Config  extends Core{
 
     public $Data;
 

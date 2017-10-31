@@ -27,7 +27,7 @@ class RootController extends Controller {
         }
     }
 
-    public function actionIndex(){
+    public function actionIndex_hookable(){
 
      //   +r("Starting model");
       //  $test = new UsersMasterModel(2);
@@ -43,7 +43,7 @@ class RootController extends Controller {
           // instantiate the loader
     }
 
-    public function actionTest(){
+    public function actionTest_hookable(){
         r("Action test!!");
     }
 

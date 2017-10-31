@@ -3,7 +3,7 @@
 namespace Core;
 
 
-class CoreLoader {
+class CoreLoader  extends Core {
     public static function SetCore($core){
         $GLOBALS["Core"] = $core;
     }

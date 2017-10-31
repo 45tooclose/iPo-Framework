@@ -5,7 +5,7 @@
 namespace Core;
 use League\Plates;
 
-class Controller {
+class Controller  extends Core{
 
         public $templates = null;
         public $themes_array = array();
@@ -28,7 +28,7 @@ class Controller {
                 $this->templates->addFolder('theme2', '/path/to/theme/2', true);*/
             } 
         }
-        public function Get($key){
+        public function Get_hookable($key){
             if($key == "templates" && DisplayAll == false){
                 return new EmptyRenderer();
             }
@@ -40,11 +40,11 @@ class Controller {
             return $this->$key;
         }
 
-        public function Set($key, $val){
+        public function Set_hookable($key, $val){
             $this->$key = $val;
         }
 
-        public function get__PATH_INFO($path){
+        public function get__PATH_INFO_hookable($path){
             $path_elements = explode("/", $path);
             $tempPI = "";
             if (isset($path_elements[2])){

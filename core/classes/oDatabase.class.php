@@ -7,7 +7,7 @@
 namespace Core;
 use fguillot\picodb;
 
-class oDatabase {
+class oDatabase  extends Core {
     public $db;
     public $Core;
     public $dbname;
