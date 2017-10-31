@@ -5,6 +5,7 @@ use fguillot\picodb;
 use AdminPanel;
 class RootController extends Controller {
 
+
     public function __construct($Core,$args){
         parent::__construct();
         CoreLoader::SetCore($Core);
@@ -35,8 +36,7 @@ class RootController extends Controller {
 
       //  $testmodel2 = new Modules\AdminPanel\TestModel('c');
 
-        
-        $test->Pw = "654";
+        //$this->Pw = "654";
         //$test->save();
         echo $this->Get('templates')->render('layouts/main', ['name' => 'TEST']);
         //$this->Render("index");

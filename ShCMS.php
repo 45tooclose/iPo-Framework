@@ -75,5 +75,5 @@ catch(Exception $ex){
 *   ShCMS Ending Point
 */
 +r('[CORE] ShCMS End'.TimeE());
-+r((get_declared_classes()));
+//+r((get_declared_classes()));
 ?>

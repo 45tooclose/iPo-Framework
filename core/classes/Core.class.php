@@ -6,15 +6,85 @@
 
 namespace Core;
 
+use Nette\Loaders;
+use \ReflectionMethod;
+
 class Core {
 
     public $config = array();
+    public $ClassMgr = null;
+    public $childs;
+    public $current_child = null;
 
-    public function __construct(){
-        $this->CnfLoad();  
-      //  r($this->config);  
+    static public function Init(){
+       $test = new self();
+       $test->Render();
+       +r($test->Addition(6,6));
+    }
+
+
+    public function SetChild($child_instance){           
+        $this->current_child = $child_instance;        
+        
+    }
+
+    public function Render() {
         $this->UrlToController();   
     }
+
+    public function __construct(){  
+        
+        $this->CnfLoad();  
+        //r($this->config);
+    }
+
+    public function Addition_hookable($int,$int2){
+        return $int + $int2;
+    }
+
+ 	public function __call($function, $args) {
+            if(null == ($this->ClassMgr)){
+                $this->ClassMgr = new ClassMgr();        
+                
+            }
+                $hooks = 0;
+
+                $oj_name = explode('_hook',$function);
+                $naked_function_name = $oj_name[0];
+                $hook_function_name = $naked_function_name."_hook";
+                $hookable_function_name = $naked_function_name."_hookable";
+
+                $this->childs[get_called_class()] = $this->ClassMgr->ParentToChilds(get_called_class());
+                foreach($this->childs[get_called_class()] as $child){
+                        if(!stristr($child,"\\")){
+                            $child = trim(("Core\\").$child);
+                        }
+                        $child = implode('',explode(' ',$child));
+                        +r($child);
+                        if(class_exists($child)){
+                            $methods = get_class_methods($child);
+                            if(in_array('OnHookInit',$methods) && in_array($hook_function_name, $methods)){
+                                $tm = $child."::OnHookInit";
+                                $this->SetChild($tm());   
+                                $hooks++;                             
+                                !r($function. " hooked using : ".$child);
+                                if($function == $naked_function_name){
+                                    return( call_user_func_array(array($this->current_child, $hook_function_name), $args));
+                                }           
+                            }
+                        }
+                }
+                if($hooks == 0 && ($function == $naked_function_name)){
+                    return( call_user_func_array(array($this, $hookable_function_name), $args));                    
+                }
+
+            }
+
+
+            //$args = implode(', ', $args);
+
+            //print "Call to $function() with args '$args' failed!\n";
+       
 
     public function CnfLoad($cnfname = "ShCMS"){
             $this->config = (array) $this->config;
@@ -58,9 +128,7 @@ class Core {
         $Controller = new $ChoosedController($this,$ControllerArgs);
     }
 
-    static public function Init(){
-        new self();
-    }
+    
 }
 
 ?>
