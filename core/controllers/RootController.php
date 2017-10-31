@@ -29,11 +29,11 @@ class RootController extends Controller {
     public function actionIndex(){
 
      //   +r("Starting model");
-        $test = new UsersMasterModel(2);
+      //  $test = new UsersMasterModel(2);
       //  r($test);
 
 
-        $testmodel2 = new Modules\AdminPanel\TestModel('c');
+      //  $testmodel2 = new Modules\AdminPanel\TestModel('c');
 
         
         $test->Pw = "654";

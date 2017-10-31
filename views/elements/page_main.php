@@ -76,19 +76,20 @@
 
           <!-- START: Counters -->
           <div class="nk-box text-white text-center">
-            <div class="bg-image bg-image-parallax" style="background-image: url('<?=(Core\AssetMgr::load("images/home_chars.png")) ?>');"></div>
+            <div class="bg-image bg-image-parallax" style="background-image: url('<?=Core\AssetMgr::load('shaiya_chars.png')?>');background-position: 50% 100%;"></div>
             <div class="row no-gutters">
                 <div class="col-md-12">
                     <div class="nk-counter">
                         <div class="bg-color bg-dark-1 op-7"></div>
                         <div class="nk-gap-3"></div>
                         <h3 class="nk-counter-title h4">After</h3>
-                        <div class="nk-count fs-45">48</div>
-                        <h3 class="nk-counter-title h4">Months of development</h3>
+                        <div class="nk-count fs-45">2</div>
+                        <h3 class="nk-counter-title h4">Years of development</h3>
                         <div class="nk-gap-3"></div>
                         <img src="<?=Core\AssetMgr::load("sheu_logo.png")?>" alt="Khaki HTML Template" width="400">
                         <h3 class="nk-counter-title h4">Presents</h3>
                         <div class="nk-gap-3"></div>
+
                     </div>
                 </div>
             </div>
