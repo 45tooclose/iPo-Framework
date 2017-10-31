@@ -16,8 +16,18 @@ class Controller  extends Core{
                 foreach(scandir('./themes/') as $flodername){
                     if(!in_array($flodername,[".",".."])){
                         $theme_floder = './themes/'.$flodername;
-                        //+r("added : ".$theme_floder);
-                        $this->templates->addFolder($flodername, $theme_floder, true);
+                     //   +r("added : ".$theme_floder);
+                        $this->templates->addFolder($flodername."Theme", $theme_floder, true);
+                    }
+                }
+                foreach(scandir('./modules/') as $module){
+                    if(!in_array($module,[".",".."])){
+                        $module_path = './modules/'.$module;
+                        $theme_floder = $module_path."/views";
+                        if(is_dir($theme_floder)){
+                  //      +r("added : ".$theme_floder);
+                                $this->templates->addFolder($module."Module", $theme_floder, true);
+                            }
                     }
                 }
                 $this->templates->loadExtension(new Plates\Extension\Asset('./views/assets/', true));

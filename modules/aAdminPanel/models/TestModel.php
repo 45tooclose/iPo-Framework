@@ -1,5 +1,5 @@
 <?php
-namespace Core\Modules\AdminPanel;
+namespace Core\Modules\aAdminPanel;
 use Core; 
 
 class TestModel extends Core\Model {

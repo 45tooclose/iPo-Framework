@@ -2,7 +2,6 @@
 
 namespace Core;
 use fguillot\picodb;
-use AdminPanel;
 class RootController extends Controller {
 
 

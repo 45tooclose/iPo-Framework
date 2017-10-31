@@ -17,6 +17,18 @@ class AssetMgr extends Core{
             return '/themes/'.$core->config->ShCMS->MainTheme.'/assets/'.$filename;
         }
 
+        
+        foreach(scandir('./modules/') as $module){
+            if(!in_array($module,[".",".."])){
+                $module_path = './modules/'.$module;
+                $theme_floder = $module_path."/views/assets";
+                $file_path = $theme_floder."/".$filename;
+                if(is_dir($theme_floder) && file_exists($file_path)){
+                    return $file_path;
+                }
+            }
+        }
+
         $other_themes = scandir("./themes/");
         foreach($other_themes as $floder){
             $tmp_name = "./themes/".$floder."/assets/".$filename;

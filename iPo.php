@@ -19,7 +19,7 @@ define('OnPageDBG',     true);  //Will display on-page errors
 
 //DEV : false or true // PROD : false
 #define('DisplayAll',    false);     //Will not render the page, it will dump all the variables before exit
-define('DisplayAll',    true);       //Will render the page
+define('DisplayAll',    false);       //Will render the page
 
 //Define environement mode : dev, prepod or prod (you can create custom environement by changing env in core/config/conf.env.ini filenames)
 define('Env',           'dev');
@@ -35,17 +35,13 @@ include("./core/libs/php-ref-master/ref.php");
 //include("./core/libs/Medoo-master/src/Medoo.php");
 include("./core/libs/plates-master/src/Engine.php");
 include("./core/libs/composer-file-loader-master/PackageLoader.php");
-
-// You load your packages
 /*
-$loader = new PackageLoader\PackageLoader();
-$loader->load(__DIR__."/core/vendor/plates");
-$loader->load(__DIR__."/core/vendor/picodb");
+*   Loading Core autoloader
 */
-
 include("./core/autoloader.inc.php");
-
-
+/*
+*   Loading composer packages without composer ;)
+*/
 foreach(scandir(__DIR__."/core/vendor/") as $fle){
     if( $fle != "." && $fle != ".."){
         $loader = new PackageLoader\PackageLoader();

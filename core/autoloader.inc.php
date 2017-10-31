@@ -5,19 +5,18 @@
 */
 spl_autoload_register(
         function ($class) {
+
             $tmp_class = $class;
-            $tmp_namespace = explode(trim('\ '),$tmp_class);
+            $tmp_namespace = explode("\\",$tmp_class);
             $module_name = 'core';
      
             if(count($tmp_namespace) > 1 &&  $tmp_namespace[0] != "Core" && $tmp_namespace[0]!= "Modules"){
                 return false;
             }
-
             if((isset($tmp_namespace[0]) && isset($tmp_namespace[1]) &&  $tmp_namespace[0] == "Core")){
                 $tmp_class = $tmp_namespace[1];
             }
-
-            if((isset($tmp_namespace[0]) && $tmp_namespace[0] == "Modules" )||(isset($tmp_namespace[1]) && $tmp_namespace[1] == "Modules") ){
+            if((isset($tmp_namespace[0]) && $tmp_namespace[0] == "Modules" )||(isset($tmp_namespace[1]) && $tmp_namespace[1] == "Modules") ){                
                 if($tmp_namespace[0] == "Modules"){
                     $module_name = "modules/".$tmp_namespace[1];   
                     $tmp_class = $tmp_namespace[2];
@@ -27,12 +26,11 @@ spl_autoload_register(
                     $tmp_class = $tmp_namespace[3];
                     
                 }
-                //+r($tmp_class);
             }
-
-         
-
-        $pieces = preg_split('/(?=[A-Z])/',$tmp_class);
+           // r($tmp_class);
+            
+           // +r($class);
+                 $pieces = preg_split('/(?=[A-Z])/',$tmp_class);
         switch($pieces[count($pieces) - 1]){
             //If classename like UsersMasterModel
             //-> we include models/UsersMasterModel.php
@@ -45,23 +43,22 @@ spl_autoload_register(
                 $path = './'.$module_name.'/controllers/' . $tmp_class . '.php';
                 break;
             //Else, we include classes/$tmp_class.php
-            default :
+            default :                
                 $path = './'.$module_name.'/classes/' . $tmp_class . '.class.php';
                 break;
         }
         if($tmp_class == "Model" || $tmp_class == "Controller"){
-            $path = './'.$module_name.'/classes/' . $tmp_class . '.class.php';            
+            $path = './'.$module_name.'/classes/' . $tmp_class . '.class.php';        
         }
         try{
             if (!class_exists($class)) {
-               //  r($path);
-                 //r($class);
+
                  if(include($path)){
                     if (class_exists($class)):
                      //   r("[Core Loader] Success fully loaded : ".$tmp_class);
                      else:
     
-                        +r("[Core Loader] 0 : Error while loading : ".$tmp_class." in : ".$tmp_class);
+                        +r("[Core Loader] 0 : Error while loading : ".$tmp_class." in : ".$class);
                      endif;
                  }else{
                     +r("[Core Loader] 4: Error while loading : ".$tmp_class);                                                        

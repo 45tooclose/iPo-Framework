@@ -4,7 +4,7 @@ namespace Core;
 class ClassMgr extends Core {
     
     public $cachefile = "./core/tmp/ClassMgr.cache.json";
-    public $reload = false;
+    public $reload = true;
 
     public $ParentChilds    =   array();
     
@@ -45,12 +45,14 @@ class ClassMgr extends Core {
             fwrite($myfile, json_encode($this->ParentChilds));
             fclose($myfile);  
         }  
-        else{
-            
+        else{   
             $this->ParentChilds = (json_decode(file_get_contents($this->cachefile),true));
         }
     }
 
+    public function GetAllClasses(){
+        return $this->ParentChilds;
+    }
 
     public function ParentToChilds($parent){
         $classname = "";
@@ -86,7 +88,7 @@ class ClassMgr extends Core {
         }else{
             !r("wrong or null object type");
         }
-        +r($classname );
+      //  +r($classname );
         
         $output_array = array();
         $potential_class = explode(trim("\ "),$classname);

@@ -16,19 +16,72 @@ class Core {
     public $childs;
     public $current_child = null;
 
+    public $reloadjsoncache = true;
+
+    public $modules_array = [
+        "name"  => "test",
+        "state" => "loaded",
+        "instance" => null
+    ];
+
     static public function Init(){
        $test = new self();
+       $classmgr_instance = new ClassMgr();
+       $test->LoadModules();
+       $classes_array = array();
+
+       foreach($classmgr_instance->GetAllClasses() as $key => $val){
+            if(!in_array($key,$classes_array)){
+                array_push($classes_array, $key);
+            }
+            foreach($val as $subkey => $subval){
+                if(!in_array($subval,$classes_array)){
+                    array_push($classes_array, $subval);
+                }
+            }
+       }
+       foreach($classes_array as $key => $val){
+
+            foreach(scandir('./modules') as $k => $v){
+                if($v != "." && $v != ".."){
+                    $file_path = './modules/'.$v.'/classes/'.implode('',explode(' ',$val)).".class.php";
+                    if(file_exists($file_path)){
+                        //if(class_exists("Modules\\".$v."\\".$val)){
+                        $class_name = "Core\\Modules\\".$v."\\".trim($val);
+                        if(class_exists($class_name)){
+                            if(is_callable([$class_name, 'OnInit'])){
+                                r("OnInit() loaded in : " . "Core\\Modules\\".$v."\\".trim($val));
+                                $function_to_launch = $class_name."::OnInit";
+                                $function_to_launch($test);
+                            }
+                        }
+                    }
+                }
+            }
+       }       
        $test->Render();
        +r($test->Addition(6,6));
     }
 
+    public function LoadModules(){
+        if($this->reloadjsoncache){
+            $modules_array = scandir("./modules");
+            foreach($modules_array as $k => $v){
+                if($v !== "." && $v !== ".."){
+
+                  //  +r($this->modules_array);
+                
+                }
+            }
+        }
+    }
 
     public function SetChild($child_instance){           
         $this->current_child = $child_instance;        
         
     }
 
-    public function Render_hookable() {
+    public function Render_hookable() {        
         $this->UrlToController();   
     }
 
@@ -43,7 +96,7 @@ class Core {
     }
 
     public static function __callStatic($function, $args)
-    {
+    {        
             $ClassMgr = new ClassMgr();        
             $childs = array();
         
@@ -53,14 +106,14 @@ class Core {
             $naked_function_name = $oj_name[0];
             $hook_function_name = $naked_function_name."_hook";
             $hookable_function_name = $naked_function_name."_hookable";
-
+            
             $childs[get_called_class()] = $ClassMgr->ParentToChilds(get_called_class());
             foreach($childs[get_called_class()] as $child){
                     if(!stristr($child,"\\")){
                         $child = trim(("Core\\").$child);
                     }
                     $child = implode('',explode(' ',$child));
-                    //+r($child);
+                    //+r($child);                    
                     if(class_exists($child)){
                         $methods = get_class_methods($child);
                         if(in_array($hook_function_name, $methods)){
@@ -73,6 +126,7 @@ class Core {
                         }
                     }
             }
+            
             $slf = get_called_class();
             if($hooks == 0 && $function == $naked_function_name){
                // print_r($args);
@@ -83,6 +137,7 @@ class Core {
             return true;
     }
  	public function __call($function, $args) {
+        
             if(null == ($this->ClassMgr)){
                 $this->ClassMgr = new ClassMgr();        
                 
@@ -102,7 +157,7 @@ class Core {
                             $child = trim(("Core\\").$child);
                         }
                         $child = implode('',explode(' ',$child));
-                        //+r($child);
+                        //+r($child);                        
                         if(class_exists($child)){
                             $methods = get_class_methods($child);
                             if(in_array('OnHookInit',$methods) && in_array($hook_function_name, $methods)){
@@ -117,6 +172,7 @@ class Core {
                         }
                 }
                 if($hooks == 0 && ($function == $naked_function_name)){
+                    
                     return call_user_func_array(array($this, $hookable_function_name), $args);                    
                 }
 
@@ -150,7 +206,6 @@ class Core {
         } else{
             $Slug = array("/");
         }
-        
 
         $ControllerArgs = array();    
         foreach($Slug as $key => $val){
