@@ -3,10 +3,38 @@ iPo Framework - Standalone MVC PHP Framework that supports easy-to-use ORM Datab
 
 ## Core Architecture
 
+
+### iPo.php, the launcher
+
+### Models
+
+### Controllers
+
+### Views
+
+### Classes
+
+##€ tmp
+
 ## Modules Architecture
+
 
 ## Use ORM Database access as Models
 
+
+## Basic Database Access
+
+
+## Using Model ORM System
+
+
 ## Hook System
+
+
+### Publics methods hooks
+
+
+### Staitcs methods hooks
+
 
 ## About Themes & Views
