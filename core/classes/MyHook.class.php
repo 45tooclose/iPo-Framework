@@ -13,8 +13,10 @@ Class MyHook extends Core {
     }
     
     public function Addition_hook($int,$int2){
-        $res = parent::Addition_hookable($int, $int2) + 5;
-        return $res;
+        //Call the original function, and add 5
+        $res = call_user_func_array(array('parent', 'Addition_hookable'), func_get_args());
+        return $res + 5;
+        
     }
 
 }
