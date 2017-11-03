@@ -58,6 +58,7 @@ class Core {
                     }
                 }
             }
+            
        }       
        $test->Render();
        +r($test->Addition(6,6));
