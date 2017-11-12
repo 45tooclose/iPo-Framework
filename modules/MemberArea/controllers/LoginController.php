@@ -12,8 +12,16 @@ class LoginController extends Core\Controller {
 
         print_r($_POST);
 
+
+        $usermgr = new UserMgr($_POST["Username"],$_POST["Password"]);
+        +r($usermgr->chk());
+
         parent::__construct();
     
+
+
+        echo $this->Get('templates')->render('layouts/login', ['name' => 'TEST']);
+        
 
     }
 
