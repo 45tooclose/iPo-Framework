@@ -337,7 +337,7 @@ class MyHookableClassName extends SomeWhatAcordingTheDoc {
     }
  ```
  
- Then to be hooked, you can create a class that extends MyClassName.You can also create this class in modules/yourmodulename/Classes floder.
+ Then to be hooked, you can create a class that extends MyHokkableClassName.You can also create this class in modules/yourmodulename/Classes floder.
  
  ```php
 <?php
