@@ -273,24 +273,92 @@ By default the right order for mylogo.png is :
 
 
 ## Classes
+As for Model and Controllers :
+for core\Classes the file will have to be named core\Classes\YouClassName.class.php :
 
+```php
+<?php
+
+namespace Core;
+
+class YouClassName extends Core {
+   //You are free to do what you want here
+        
+}
+```
+and if you are making a module, the file will have to look like :
+```php
+<?php
+
+namespace Core\Module\mymodule;
+
+class YouClassName extends Core\Core {
+   //You are free to do what you want here
+   ...
+   
+   
+   //This function will be called before that the page rtender, you can modify the core instance and what you want here
+   public static function OnInit($instanceofcore){
+   
+   }
+        
+}
+```
+
+
+This is also were you can write hooks.
 
 ## Modules Architecture
 
+Modules architecture is the same as the core one, excpect for config, tmp, vendor and libs floder. But Controllers, Models, Classes, routes, views and asset system are the same. See core/modules/AdminPanel for an empty exemple. 
 
-## Basic Database Access
+## Advanced Database Usage
 
+We are using PicoDb for your database operations. You can use models for basic CRUD, but feel free to use the picodb query system.
 
-## Using Model ORM System
+U'll have to put use fguillot\picotdb; at the begging of your file. 
+
+To create a new picodb instance, use $db = new Core\oDatabase('databasename');
+then do what you want with $db, see https://github.com/php-libs/picoDb
 
 
 ## Hook System
 
+Each function with the suffix "_hookable" can be hooked. No matter if it is a core classe, a  model, or a  controller or a module one.
+Here is how to write an hookable function :
+ :
+```php
+<?php
+//extends Core, Model or Cotnroller
+class MyHookableClassName extends SomeWhatAcordingTheDoc {
 
-### Publics methods hooks
+    public function Addition_hookable($int,$int2){
+        return $int + $int2;
+    }
+ ```
+ 
+ Then to be hooked, you can create a class that extends MyClassName.You can also create this class in modules/yourmodulename/Classes floder.
+ 
+ ```php
+<?php
+//extends Core, Model or Cotnroller
+class MyHookClass extends MyHookableClassName {
 
+    public function __construct(){
+        $this->SetChild($this);
+    }
+    
+    public static function OnHookInit($arg1 = null, $arg2 = null, $arg3 = null){
+        return new self(func_get_args());
+    }
 
-### Staitcs methods hooks
+    public function Addition_hook($int,$int2){
+        $res = call_user_func_array(array('parent','Addition_hookable'), func_get_args());
+        return $int + 5;
+    }
+ ```
+ 
 
-
-## About Themes & Views
+Without the hook, the result of MyHookableClassName->Addition(6,6) was 12.
+Now with the hook, the same function will return 17.
+You can hook each ipo-based classes, there is no limit. You can hook from core a module, or you can hook the core from a module. Using that, modules will be very easily updated.
