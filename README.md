@@ -32,7 +32,10 @@ Config file are stored in core/config and are in ini format. Don't forget to put
 If you for exemple you defined the Env option to 'dev', you'll have to edit *.dev.ini files.
 And if you changed it to 'prod', you'll have to edit *.prod.ini files. If you are making a module, please make it creating your config file in this floder, so config will always stay clean with ALL the config in it.
 
-### Adding custom packahes
+### TMP Files
+Caches and tamporary files are stored in json format in core\tmp you can clean this foder sometimes
+
+### Adding custom packages
 
 There is 3 ways to install extisting PHP packages, as there is 3 kinf od packages.
 
@@ -56,7 +59,7 @@ Core modules are standalone packages that you can share with every i-po frameork
 Once you downloaded a core module, all you have to do is to paste it in core\modules floder.
 
 
-### Models // Basic CRUD
+## Models // Basic CRUD
 
 Models are ORM based. All you have to do to create a model, is to design it in your SQL engine. There is tons of well made tools for each SQL Engine that provide a graphical way to design your database tables.
 
@@ -153,22 +156,126 @@ $model_instance->save();
 ?>
 ```
 
+## Routes and Controllers
+
+Firstly, you'll have to create a controller file.
+As for Model :
+for core\Controllers will have to look like :
+
+```php
+<?php
+
+namespace Core;
+
+//class name of your controller have to finish by ***Controller
+class MyController extends Controller {
+    public function __construct($Core, $args){
+            parrent::__construct();
+            CoreLoader::SetCore($Core);
+            $this->Core = $Core;
+            
+            //Render a template using plates :
+            echo $this->Get('templates')->render('layouts/main', ['name' => 'Jean']);
+            
+            //Will render the mainp.php template
+            //in views/layouts/main.php if you created this template in root
+            //in themes/YourThemeName/layouts/main.php if you are making a theme
+            //in modules/yourmodulename/views/layouts/main.php if you need a view in your module
+    }
+        
+}
+```
+and if you are making a module, the file will have to look like :
+```php
+<?php
+
+namespace Core\Modules\MyModuleName;
+
+//class name of your controller have to finish by ***Controller
+class MycontrollernameController extends Core\Controller {
+    public function __construct($Core, $args){
+            parrent::__construct();
+            CoreLoader::SetCore($Core);
+            $this->Core = $Core;
+            
+            //Render a template using plates :
+            echo $this->Get('templates')->render('layouts/main', ['name' => 'Jean']);
+            
+            //Will render the mainp.php template
+            //in views/layouts/main.php if you created this template in root
+            //in themes/YourThemeName/layouts/main.php if you are making a theme
+            //in modules/yourmodulename/views/layouts/main.php if you need a view in your module
+            
+    }
+        
+}
+```
+
+Well you have your controller, your model, but we didn't match that to a url.
+
+Simply open router.json file, in ./router.json or ./modules/yourmodulename/router.json
+and add 
+
+```json
+{
+    ...
+    "/":    "Core\\MycontrollernameController"
+}
+
+```
+
+or this if you are making a module :
+
+```json
+{
+    ...
+    "/user/[i:id]/":    "Core\\Modules\\yourmodulename\\MycontrollernameController"
+}
+
+```
 
 
+## Views
+
+### Views files
+
+Views can be stored in :
+"
+- in views/layouts/main.php if you created this template in root
+- in themes/YourThemeName/layouts/main.php if you are making a theme
+- in modules/yourmodulename/views/layouts/main.php if you need a view in your module
+"
+
+By default the right order is :
+1) 1stly the framwork try to find it in ./views
+2) then it try in ./themes/anythemename/views
+3) and then in ./modules/anymodule/modules
+
+You can use in your views all Plates from The PHP League functions : 
+http://platesphp.com
+
+## Assets 
+
+You have to load asset in your template by usign this function :
+```php
+<html>
+    ....
+    <img src="<?=Core\AssetMgr::load('mylogo.png')?>" width="281">
+    ...
+ </html>
+ ```
+ 
+ Using Core\AssetMgr::load(), the framework will load the asset with the same logic as for views.
+By default the right order for mylogo.png is :
+1) 1stly the framwork try to find it in ./views/assets/mylogo.png
+2) then it try in ./themes/anythemename/views/assets/mylogo.png
+3) and then in ./modules/anymodule/modules/assets/mylogo.png
 
 
-### Controllers
+## Classes
 
-### Views
-
-### Classes
-
-##€ tmp
 
 ## Modules Architecture
-
-
-## Use ORM Database access as Models
 
 
 ## Basic Database Access
