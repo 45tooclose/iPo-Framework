@@ -1196,7 +1196,7 @@
                                 <div class="nk-sign-form">
                                     <div class="nk-sign-form-container">
                                         <!-- START: Login Form -->
-                                        <form class="nk-sign-form-login active" action="#">
+                                        <form class="nk-sign-form-login active" action="/login">
                                             <h4>Log In</h4>
 
                                             <input class="form-control" type="text" placeholder="Username or Email">

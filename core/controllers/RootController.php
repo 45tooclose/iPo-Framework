@@ -12,9 +12,11 @@ class RootController extends Controller {
 
        // r("Starting RootController with:");
        // r($args);
-
+        if(isset($args[0])){
         $action = ((strlen($args[0]) > 0) ? $args[0] : "Index");
-
+        }else{
+            $action = "Index";
+        }
        // r($action);
 
         $actionname = "action".$action;

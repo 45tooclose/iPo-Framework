@@ -20,13 +20,13 @@
                                 <div class="nk-sign-form">
                                     <div class="nk-sign-form-container">
                                         <!-- START: Login Form -->
-                                        <form class="nk-sign-form-login active" action="#">
+                                        <form class="nk-sign-form-login active" action="/login" method="POST">
                                             <h4>Log In</h4>
 
-                                            <input class="form-control" type="text" placeholder="Username or Email">
+                                            <input name="Username" class="form-control" type="text" placeholder="Username or Email">
                                             <div class="nk-gap"></div>
 
-                                            <input class="form-control" type="password" placeholder="Password">
+                                            <input name="Password" class="form-control" type="password" placeholder="Password">
                                             <div class="nk-gap"></div>
 
                                             <div class="form-check pull-left">
@@ -49,7 +49,7 @@
                                         <form class="nk-sign-form-lost" action="#">
                                             <h4>Lost Password</h4>
 
-                                            <input class="form-control" type="text" placeholder="Username or Email">
+                                            <input name="Username" class="form-control" type="text" placeholder="Username or Email">
                                             <div class="nk-gap"></div>
 
                                             <button class="nk-btn nk-btn-color-white text-dark-1 pull-right">Get New Password</button>
@@ -61,13 +61,13 @@
                                         <!-- END: Lost Password Form -->
 
                                         <!-- START: Register Form -->
-                                        <form class="nk-sign-form-register" action="#">
+                                        <form class="nk-sign-form-register" action="/login" method="POST">
                                             <h4>Register</h4>
 
-                                            <input class="form-control" type="text" placeholder="Username">
+                                            <input name="Username" class="form-control" type="text" placeholder="Username">
                                             <div class="nk-gap"></div>
 
-                                            <input class="form-control" type="email" placeholder="Email">
+                                            <input name="Email" class="form-control" type="email" placeholder="Email">
                                             <div class="nk-gap"></div>
 
                                             <div>A password will be emailed to you.</div>

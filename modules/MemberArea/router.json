@@ -1,0 +1,3 @@
+{
+    "/login":    "Core\\Modules\\MemberArea\\LoginController"
+}
