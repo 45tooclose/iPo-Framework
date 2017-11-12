@@ -19,7 +19,7 @@ define('OnPageDBG',     true);  //Will display on-page errors
 
 //DEV : false or true // PROD : false
 #define('DisplayAll',    false);     //Will not render the page, it will dump all the variables before exit
-define('DisplayAll',    false);       //Will render the page
+define('DisplayAll',    true);       //Will render the page
 
 //Define environement mode : dev, prepod or prod (you can create custom environement by changing env in core/config/conf.env.ini filenames)
 define('Env',           'dev');
@@ -32,8 +32,6 @@ function TimeE(){
 *   Loading external libs
 */
 include("./core/libs/php-ref-master/ref.php");
-//include("./core/libs/Medoo-master/src/Medoo.php");
-include("./core/libs/plates-master/src/Engine.php");
 include("./core/libs/composer-file-loader-master/PackageLoader.php");
 /*
 *   Loading Core autoloader

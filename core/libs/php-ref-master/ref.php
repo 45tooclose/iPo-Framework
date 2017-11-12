@@ -42,6 +42,9 @@ if ($handle) {
             $warnstate = 'alert';
           }elseif(trim($first) == '!'){
             $warnstate = 'error';
+          }elseif(trim($first) == "~"){
+            $warnstate = "error";
+            $options[] = "~";
           }
         }
     }

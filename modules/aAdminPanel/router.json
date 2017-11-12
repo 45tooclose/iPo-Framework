@@ -1,0 +1,3 @@
+{
+    "/user/[i:id]/":    "Core\\Modules\\AdminPanel\\UserController"
+}

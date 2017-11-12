@@ -4,7 +4,7 @@ namespace Core;
 class ClassMgr extends Core {
     
     public $cachefile = "./core/tmp/ClassMgr.cache.json";
-    public $reload = true;
+    public $reload = false;
 
     public $ParentChilds    =   array();
     

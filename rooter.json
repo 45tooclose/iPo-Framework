@@ -1,5 +1,0 @@
-{
-    //URL Format        //Controller Name
-    "/":                "Root",
-    "/(.*)":            "Pages"
-}

@@ -1,13 +1,17 @@
 <?php
 /*
 *   Class Core
-*
+*   
+*   This class loads configs, ClassMgr jsons, 
+*   Parse URL to the CONTROLLER with given ,
+*   args using RouteMGr
 */
 
 namespace Core;
 
-use Nette\Loaders;
 use \ReflectionMethod;
+use nikic\FastRoute;
+
 
 class Core {
 
@@ -15,21 +19,16 @@ class Core {
     public $ClassMgr = null;
     public $childs;
     public $current_child = null;
-
     public $reloadjsoncache = true;
-
-    public $modules_array = [
-        "name"  => "test",
-        "state" => "loaded",
-        "instance" => null
-    ];
+    public $routes_controllers = array();
 
     static public function Init(){
-       $test = new self();
+
+       $core_instance = new self();
        $classmgr_instance = new ClassMgr();
-       $test->LoadModules();
        $classes_array = array();
 
+       //Class MGR Loading
        foreach($classmgr_instance->GetAllClasses() as $key => $val){
             if(!in_array($key,$classes_array)){
                 array_push($classes_array, $key);
@@ -40,6 +39,8 @@ class Core {
                 }
             }
        }
+
+       //Running OnInit in modules classes
        foreach($classes_array as $key => $val){
 
             foreach(scandir('./modules') as $k => $v){
@@ -52,7 +53,7 @@ class Core {
                             if(is_callable([$class_name, 'OnInit'])){
                                 r("OnInit() loaded in : " . "Core\\Modules\\".$v."\\".trim($val));
                                 $function_to_launch = $class_name."::OnInit";
-                                $function_to_launch($test);
+                                $function_to_launch($core_instance);
                             }
                         }
                     }
@@ -60,32 +61,53 @@ class Core {
             }
             
        }       
-       $test->Render();
-       +r($test->Addition(6,6));
-    }
 
-    public function LoadModules(){
-        if($this->reloadjsoncache){
-            $modules_array = scandir("./modules");
-            foreach($modules_array as $k => $v){
-                if($v !== "." && $v !== ".."){
+       //Adding Routes to the array $core_instance->routes_controllers
 
-                  //  +r($this->modules_array);
-                
-                }
+       foreach(scandir('./modules') as $k => $v){
+        $route_file = './modules/'.$v.'/router.json';
+        if(file_exists($route_file)){
+            $routes_array = (array) json_decode(file_get_contents($route_file));
+
+            $core_instance->routes_controllers = array_merge($routes_array, $core_instance->routes_controllers);
+
             }
+       }
+
+       $router = new RoutMgr();      
+       +r($core_instance->routes_controllers); 
+       foreach($core_instance->routes_controllers as $key => $val){
+
+            +r($val);
+            $router->map( 'GET|POST', $key, $val);
+       }
+       r($router);
+       $match = $router->match();
+        // call closure or throw 404 status
+       +r($match);
+
+       if(class_exists($match['target'])){
+           +r("true");
+           $controller_instance = new $match['target']($core_instance, $match['params']);
+       } else {
+            // no route was matched
+            ~r("404 ERROR");
         }
+            
+
+
+
+    
+      // $core_instance->Render();
+       +r($core_instance->Addition(6,6));
     }
+
 
     public function SetChild($child_instance){           
         $this->current_child = $child_instance;        
         
     }
-
-    public function Render_hookable() {        
-        $this->UrlToController();   
-    }
-
+    
     public function __construct(){  
         
         $this->CnfLoad();  
@@ -189,41 +211,6 @@ class Core {
             $this->config = (array) $this->config;
             $this->config[$cnfname] = (new Config($cnfname))->Data;
             $this->config = (object)  $this->config;
-    }
-
-    
-    /*
-    *   Si $Slug = site.com/ OR site.com            => if exists MainController->action('Index') runing it
-    *   Sinon si site.com/aaaa OR site.com/aaaa     => if exists MainController->action('aaaa') runing it
-    *   Sinon si aaaaController existe              => if exists aaaaController->action('Index') runing it
-    */
-    public function UrlToController(){
-
-        $DefaultController = "RootController";  
-        $ChoosedController = null;   
-        
-        if(isset($_GET["path"])){
-            $Slug = explode('/',$_GET["path"]);
-        } else{
-            $Slug = array("/");
-        }
-
-        $ControllerArgs = array();    
-        foreach($Slug as $key => $val){
-            $tmp_controller = $val."Controller";
-            preg_match_all('/^[A-Za-z]{1,}$/i',$val,$matches);
-            if($tmp_controller != "Controller" && count($matches[0]) > 0  && class_exists($tmp_controller)){
-               // r("FOUNDED ".$tmp_controller);
-                $ChoosedController = $tmp_controller;
-                $ControllerArgs = array();                
-            }
-            array_push($ControllerArgs,$val);
-        }
-        if($ChoosedController == null){
-            $ChoosedController = $DefaultController;
-        }
-        $ChoosedController = trim("Core\ ") . $ChoosedController;
-        $Controller = new $ChoosedController($this,$ControllerArgs);
     }
 
     
