@@ -48,10 +48,6 @@ include("./core-libs/composer-file-loader-master/PackageLoader.php"); //HERE
 #### COMPOSER PACKAGES
 You can load composer packages, without installing composer thank to composer-file-loader lib, you will be able to use them simply by pasting the package floder in the core\vendor directory. I am using this way for 2 packages : Plates that I use for the template system, and PicoDB, for the database access.
 
-```php
-include("./core-libs/composer-file-loader-master/PackageLoader.php"); //HERE
-```
-
 #### CORE MODULES
 
 Core modules are standalone packages that you can share with every i-po frameork baased website. Core modules can contains everything, from a simply PHP library for developper, to an advanced paiment gate that uses custom viws, web assets (png, css, js), cstom controllers, classes and models.
