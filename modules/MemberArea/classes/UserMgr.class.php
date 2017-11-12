@@ -43,7 +43,7 @@ class UserMgr extends Core\Core {
     public function chk(){
         if($this->acc_exists && $this->pw_valid){
             return true;
-        }elseif($acc_exists){
+        }elseif($this->acc_exists){
             return 0;
         }else{
             return -1;

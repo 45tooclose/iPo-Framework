@@ -75,19 +75,14 @@ class Core {
        }
 
        $router = new RoutMgr();      
-       +r($core_instance->routes_controllers); 
        foreach($core_instance->routes_controllers as $key => $val){
 
-            +r($val);
             $router->map( 'GET|POST', $key, $val);
        }
-       r($router);
        $match = $router->match();
         // call closure or throw 404 status
-       +r($match);
 
        if(class_exists($match['target'])){
-           +r("true");
            $controller_instance = new $match['target']($core_instance, $match['params']);
        } else {
             // no route was matched

@@ -1,3 +1,15 @@
+<?php 
+    $data = array();
+    if(!isset($page)){
+        $page = "page_main";
+    }
+    if(!isset($message)){
+        $message = '';
+    }
+    $data['page'] = $page;  
+    $data['message'] = $message;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <!-- head -->
@@ -5,7 +17,9 @@
     <!-- /head -->
     <body> 
     
-    <?php $this->insert('elements/page_main') ?>
+    <?php $this->insert('elements/headernav_main') ?>
+
+    <?php $this->insert('pages/'.$page, ['data' => $data]) ?>
 
 
     <!-- footer -->
