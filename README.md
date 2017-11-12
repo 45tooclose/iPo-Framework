@@ -233,7 +233,15 @@ or this if you are making a module :
 }
 
 ```
+and you'll get the $id in your costruct using : 
 
+```php
+
+    public function __construct($Core, $args){
+        $id = $args['id'];
+    }
+
+```
 
 ## Views
 
