@@ -31,6 +31,8 @@ class LoginController extends Core\Controller {
             
         }
 
+
+
         echo $this->Get('templates')->render('layouts/main', ['page' => $page_to_render, 'message' => $msg]);
         
 
