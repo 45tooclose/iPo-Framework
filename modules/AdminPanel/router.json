@@ -1,0 +1,3 @@
+{
+    "/admin":    "Core\\Modules\\AdminPanel\\AdminController"
+}
