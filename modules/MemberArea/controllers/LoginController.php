@@ -27,13 +27,12 @@ class LoginController extends Core\Controller {
                 $msg = 'Unknow user or email';       
                 break;
         }
-        echo $this->Get('templates')->render('layouts/main', ['page' => $page_to_render, 'message' => $msg]);
-        
-
+        if(isset($_POST["Json"])){
+            echo json_encode($usermgr->chk());
+        }else{
+            echo $this->Get('templates')->render('layouts/main', ['page' => $page_to_render, 'message' => $msg]);            
+        }        
     }
-
-   
-
 }
 
 
