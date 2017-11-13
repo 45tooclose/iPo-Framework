@@ -14,10 +14,13 @@ class LoginController extends Core\Controller {
     
         $page_to_render = 'login';
         $msg = '';
+        
         switch($usermgr->chk()){
             case 1 : 
-                $page_to_render = 'profile';
+                //$page_to_render = 'profile';
                 $msg = 'You successfully logged in. Welcome in Shaiya Europe :)';
+                $usermgr->login($_POST["Username"]);
+                
                 //success
                 break;
             case 0 :
@@ -30,9 +33,6 @@ class LoginController extends Core\Controller {
                 break;
             
         }
-
-
-
         echo $this->Get('templates')->render('layouts/main', ['page' => $page_to_render, 'message' => $msg]);
         
 

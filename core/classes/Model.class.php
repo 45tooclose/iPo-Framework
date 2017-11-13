@@ -84,6 +84,16 @@ class Model  extends Core {
         $this->db->table($this->TableName)->eq($this->IndexColName, $this->id)->remove();
         
     }
+    /*
+    *   Build a new model instance using the row values and model name
+    */
+    public static function rowToModel($row, $modelname){
+        $model_instance = new $modelname();
+        $rowid = $row[$model_instance->IndexColName];
+        $model_instance = new $modelname($rowid);
+        return $model_instance;
+        
+    }
 
 }
 

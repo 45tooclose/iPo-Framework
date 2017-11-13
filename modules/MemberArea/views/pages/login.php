@@ -50,14 +50,14 @@
                         <div class="nk-gap"></div>
 
                         <!-- START: Form 2 -->
-                        <form action="#" class="nk-form nk-form-ajax nk-form-style-1">
-                            <input type="text" class="form-control required" name="username" placeholder="Email or Username *">
+                        <form action="#" name="login-form" class="nk-form nk nk-form-style-1" method = "POST">
+                            <input type="text" class="form-control required" name="Username" placeholder="Email or Username *">
                             <div class="nk-gap"></div>
-                            <input type="password" class="form-control required" name="password" placeholder="Password *">
+                            <input type="password" class="form-control required" name="Password" placeholder="Password *">
                             <div class="nk-gap"></div>
                             <div class="nk-form-response-success"></div>
                             <div class="nk-form-response-error"></div>
-                            <button class="nk-btn nk-btn-effect-2-right nk-btn-color-dark-1" style="margin:auto;">
+                            <button onclick="$('#login-form').submit()" class="nk-btn nk-btn-effect-2-right nk-btn-color-dark-1" style="margin:auto;">
                                 <span>Login</span>
                                 <span class="icon"><i class="ion-paper-airplane"></i></span>
                             </button>
