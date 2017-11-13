@@ -1,6 +1,5 @@
 <div class="nk-main">
 
-
         <!-- START: Header Title -->
         <!--
     Additional Classes:
@@ -12,28 +11,26 @@
         .nk-header-title-parallax
         .nk-header-title-parallax-opacity
 -->
-        <div class="nk-header-title nk-header-title-parallax nk-header-title-parallax-opacity">
-            <div class="bg-image">
-                <div style="background-image: url('assets/images/image-8.jpg');"></div>
-            </div>
-            <div class="nk-header-table">
-                <div class="nk-header-table-cell">
-                    <div class="container">
+<div class="nk-header-title nk-header-title-sm nk-header-title-parallax nk-header-title-parallax-opacity">
+<div class="bg-image">
+    <div style="background-image: url('assets/images/image-7.jpg');"></div>
+</div>
+<div class="nk-header-table">
+    <div class="nk-header-table-cell">
+        <div class="container">
 
 
-                        <h1 class="nk-title">Sign In - Shaiya Europe</h1>
-
-
-                        <h2 class="nk-sub-title">Sign in to access to your profile and to interact with the community</h2>
+            <h1 class="nk-title">Page Header Small</h1>
 
 
 
-                    </div>
-                </div>
-            </div>
 
         </div>
-        <!-- END: Header Title -->
+    </div>
+</div>
+
+</div>
+<!-- END: Header Title -->
 
 
 

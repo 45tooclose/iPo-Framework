@@ -9,9 +9,7 @@ class LoginController extends Core\Controller {
         $this->Core = $Core;    
       //  +r($args);
         $usermgr = new UserMgr($_POST["Username"],$_POST["Password"]);
-
         parent::__construct();
-    
         $page_to_render = 'login';
         $msg = '';
         switch($usermgr->chk()){
@@ -28,11 +26,7 @@ class LoginController extends Core\Controller {
                 //Unknow user
                 $msg = 'Unknow user or email';       
                 break;
-            
         }
-
-
-
         echo $this->Get('templates')->render('layouts/main', ['page' => $page_to_render, 'message' => $msg]);
         
 
