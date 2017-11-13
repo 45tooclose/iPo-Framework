@@ -50,7 +50,7 @@ foreach(scandir(__DIR__."/core/vendor/") as $fle){
 
 
 
-r("[CORE] ShCMS Start - ENV MODE : ".Env ." ".TimeE());
+//r("[CORE] ShCMS Start - ENV MODE : ".Env ." ".TimeE());
 
 /*
 *  Registering Autoloader

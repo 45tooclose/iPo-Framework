@@ -51,7 +51,7 @@ class Core {
                         $class_name = "Core\\Modules\\".$v."\\".trim($val);
                         if(class_exists($class_name)){
                             if(is_callable([$class_name, 'OnInit'])){
-                                r("OnInit() loaded in : " . "Core\\Modules\\".$v."\\".trim($val));
+                                //r("OnInit() loaded in : " . "Core\\Modules\\".$v."\\".trim($val));
                                 $function_to_launch = $class_name."::OnInit";
                                 $function_to_launch($core_instance);
                             }
