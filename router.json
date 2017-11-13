@@ -1,3 +1,5 @@
 {
-    "/":    "RootController"
+    "/":    "Core\\RootController",
+    "":    "Core\\RootController"
+    
 }

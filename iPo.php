@@ -1,4 +1,5 @@
 <?php
+
 /*
 *   Core Options
 */
@@ -70,4 +71,5 @@ catch(Exception $ex){
 */
 +r('[CORE] ShCMS End'.TimeE());
 //+r((get_declared_classes()));
+
 ?>
