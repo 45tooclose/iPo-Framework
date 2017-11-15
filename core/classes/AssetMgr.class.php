@@ -1,4 +1,22 @@
 <?php 
+/**
+* Core\AssetMgr is a simple class to load assets
+*
+* Core\AssetMgr is a class that has no real actual code, but merely
+* exists to help provide people with an understanding as to how the
+* various PHPDoc tags are used.
+*
+* Example usage:
+* if (Example_Class::example()) {
+*    print "I am an example.";
+* }
+*
+* @package  I-Po Framework - Core
+* @author   FAUSSURIER Marc <faussurier.marc@icloud.com>
+* @version  $Revision: 1.3 $
+* @access   public
+* @see      http://shaiya.eur
+*/
 namespace Core;
 
 class AssetMgr extends Core{

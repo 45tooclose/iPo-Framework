@@ -67,6 +67,22 @@ class UserMgr extends Core\Core {
         $_SESSION["UserUID"] = $model_instance->UserUID;
     }
 
+    public static function IsLoggedIn(){
+        if(isset($_SESSION["UserUID"])){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static function GetUser(){
+        if(self::IsLoggedIn()){
+            return (new Core\UsersMasterModel($_SESSION["UserID"]));            
+        }else{
+            return true;
+        }
+    }
+
     public function logout(){
         session_destroy();
     }
