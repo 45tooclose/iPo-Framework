@@ -1,3 +1,4 @@
 {
-    "/login":    "Core\\Modules\\MemberArea\\LoginController"
+    "/login":    "Core\\Modules\\MemberArea\\LoginController",
+    "/menu": "Core\\Modules\\MemberArea\\MainController"
 }
