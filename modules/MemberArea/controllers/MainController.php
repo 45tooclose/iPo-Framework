@@ -19,8 +19,8 @@ $is_array = is_array($args);
 
     public function RenderMenu(){
 
-        $tpl = $this->Get('templates');
-        r($rpl);
+        $tpl = $this->Core->Get('templates');
+        r($tpl);
 
     }
 }
