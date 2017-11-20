@@ -1,7 +1,6 @@
 <?php 
 
 namespace Core\Modules\MemberArea;
-
 use Core;
 
 class UserMgr extends Core\Core {
@@ -12,7 +11,6 @@ class UserMgr extends Core\Core {
 
     public static function OnInit(){
        @session_start();
-       +r($_SESSION);
     }
 
     //Construit un utilisateur à partir de sont email et password optionel
@@ -56,13 +54,13 @@ class UserMgr extends Core\Core {
     }
 
     public function login($username_or_email){
-        +r($username_or_email);
         $res = $this->picodb->table('Users_Master')
         ->beginOr()
         ->eq('UserID', $username_or_email)
         ->eq('Email', $username_or_email)
         ->closeOr()
         ->findAll();    
+        
         $model_instance = Core\Model::rowToModel($res[0], 'Core\UsersMasterModel');
         $_SESSION["UserUID"] = $model_instance->UserUID;
     }

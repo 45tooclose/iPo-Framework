@@ -592,7 +592,7 @@ class ref{
     }
 
     if(!$maybeValid)
-      throw new \Exception('Pattern does not appear to be a valid PHP regex');
+      return null;
 
     $output              = array();
     $capturingGroupCount = 0;

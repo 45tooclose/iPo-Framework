@@ -1,4 +1,5 @@
 {
     "/login":    "Core\\Modules\\MemberArea\\LoginController",
+    "/profile":    "Core\\Modules\\MemberArea\\ProfileController",
     "/menu": "Core\\Modules\\MemberArea\\MainController"
 }
